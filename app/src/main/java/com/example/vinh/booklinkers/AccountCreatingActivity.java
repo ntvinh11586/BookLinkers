@@ -54,7 +54,7 @@ public class AccountCreatingActivity extends AppCompatActivity {
     }
 
     private boolean isAvailableEmail(String email) {
-        if (!username.equals(ProcessingTest.email))
+        if (!email.equals(ProcessingTest.email))
             return true;
         return false;
     }
