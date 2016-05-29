@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (isLoginCorrect(username, password)) {
                     //Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    finish();
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
