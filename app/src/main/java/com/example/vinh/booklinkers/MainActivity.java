@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.vinh.datatesting.ProcessingTest;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,12 +44,10 @@ public class MainActivity extends AppCompatActivity
         lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
 
-        String[] ds = {"a", "b", "c", "d", "e"};
-
         ArrayAdapter<String> havingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, ds);
+                new ArrayAdapter<String>(this, R.layout.list_book_item, ProcessingTest.havingBooksRecently);
         ArrayAdapter<String> needingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, ds);
+                new ArrayAdapter<String>(this, R.layout.list_book_item, ProcessingTest.needingBooksRecently);
 
         lvHavingBooks.setAdapter(havingBooksAdapter);
         lvNeedingBooks.setAdapter(needingBooksAdapter);

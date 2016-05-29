@@ -11,8 +11,8 @@ import com.example.vinh.datatesting.ProcessingTest;
 
 public class AccountCreatingActivity extends AppCompatActivity {
 
-    EditText etUsername, etPassword, etPasswordAgain;
-    String username, password, passwordAgain;
+    EditText etUsername, etPassword, etPasswordAgain, etEmail;
+    String username, password, passwordAgain, email;
     Button btnCreateNewAccount;
 
 
@@ -23,6 +23,7 @@ public class AccountCreatingActivity extends AppCompatActivity {
 
         etUsername = (EditText)findViewById(R.id.edit_username);
         etPassword = (EditText)findViewById(R.id.edit_password);
+        etEmail = (EditText) findViewById(R.id.edit_email);
         etPasswordAgain = (EditText)findViewById(R.id.edit_password_again);
         btnCreateNewAccount = (Button)findViewById(R.id.button_create_account);
 
@@ -30,10 +31,11 @@ public class AccountCreatingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 username = etUsername.getText().toString();
+                email = etEmail.getText().toString();
                 password = etPassword.getText().toString();
                 passwordAgain = etPasswordAgain.getText().toString();
 
-                if (canCreateAccount(username, password, passwordAgain)) {
+                if (canCreateAccount(username, email, password, passwordAgain)) {
                     Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
@@ -42,24 +44,30 @@ public class AccountCreatingActivity extends AppCompatActivity {
         });
     }
 
-    private boolean canCreateAccount(String username, String password, String passwordAgain) {
-        if (isAvailableAccount(username) && passwordMatch(password, passwordAgain))
+    private boolean canCreateAccount(String username, String password, String email, String passwordAgain) {
+        if (isAvailableAccount(username)
+                && isAvailableEmail(email)
+                && passwordMatch(password, passwordAgain))
             return true;
 
+        return false;
+    }
+
+    private boolean isAvailableEmail(String email) {
+        if (!username.equals(ProcessingTest.email))
+            return true;
         return false;
     }
 
     private boolean passwordMatch(String password, String passwordAgain) {
         if (password.equals(passwordAgain))
             return true;
-
         return false;
     }
 
     private boolean isAvailableAccount(String username) {
         if (!username.equals(ProcessingTest.username))
             return true;
-
         return false;
     }
 }

@@ -11,10 +11,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.vinh.datatesting.ProcessingTest;
 
 public class HavingBooksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView lvHavingBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,13 @@ public class HavingBooksActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
+
+        ArrayAdapter<String> havingBooksAdapter =
+                new ArrayAdapter<String>(this, R.layout.list_book_item, ProcessingTest.havingBooksRecently);
+
+        lvHavingBooks.setAdapter(havingBooksAdapter);
     }
 
     @Override
