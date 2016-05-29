@@ -10,7 +10,7 @@ public class ProcessingTest {
     public ProcessingTest() {}
 
     public static void callProcessingTest() {
-        username = "vinh";
-        password = "123";
+        username = "";
+        password = "";
     }
 }

@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.vinh.datatesting.ProcessingTest;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class AccountCreatingActivity extends AppCompatActivity {
 
     EditText etUsername, etPassword, etPasswordAgain;
     String username, password, passwordAgain;

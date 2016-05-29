@@ -36,7 +36,9 @@ public class LoginActivity extends AppCompatActivity {
                 password = etPassword.getText().toString();
 
                 if (isLoginCorrect(username, password)) {
-                    Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
                 }
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,
-                        CreateAccountActivity.class);
+                        AccountCreatingActivity.class);
                 startActivity(intent);
             }
         });
