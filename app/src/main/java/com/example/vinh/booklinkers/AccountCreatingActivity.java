@@ -36,7 +36,10 @@ public class AccountCreatingActivity extends AppCompatActivity {
                 passwordAgain = etPasswordAgain.getText().toString();
 
                 if (canCreateAccount(username, email, password, passwordAgain)) {
-                    Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+
+                    // update db
+
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
                 }

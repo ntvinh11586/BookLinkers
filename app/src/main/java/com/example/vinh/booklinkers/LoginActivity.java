@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
@@ -51,15 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,
                         AccountCreatingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button button2 = (Button)findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, BookInformationActivity.class);
                 startActivity(intent);
             }
         });

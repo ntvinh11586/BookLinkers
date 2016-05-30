@@ -139,8 +139,6 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
 
         for (Route route : routes) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 16));
-            //((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
-            //((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
 
             originMarkers.add(mMap.addMarker(new MarkerOptions()
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_start_location))

@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="lala"
+        android:icon="@drawable/ic_menu_home"
+        android:title="Home"
         app:showAsAction="ifRoom"/>
 
     <item
