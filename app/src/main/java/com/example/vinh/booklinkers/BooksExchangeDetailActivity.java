@@ -17,6 +17,9 @@ public class BooksExchangeDetailActivity extends AppCompatActivity {
     private ListView lvHavingBooks;
     private ListView lvNeedingBooks;
 
+    static final String EXTRA_YOUR_LOCATION = "com.example.vinh.Booklinkers.EXTRA_YOUR_LOCATION";
+    static final String EXTRA_OWNER_LOCATION = "com.example.vinh.Booklinkers.EXTRA_OWNER_LOCATION";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,10 @@ public class BooksExchangeDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(
                         BooksExchangeDetailActivity.this,
                         OwnerDirectionMapsActivity.class);
+
+                intent.putExtra(EXTRA_YOUR_LOCATION, "dai hoc khoa hoc tu nhien");
+                intent.putExtra(EXTRA_OWNER_LOCATION, "dai hoc bach khoa");
+
                 startActivity(intent);
             }
         });

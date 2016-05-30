@@ -44,6 +44,9 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
     private String origin;
     private String destination;
 
+    static final String EXTRA_YOUR_LOCATION = "com.example.vinh.Booklinkers.EXTRA_YOUR_LOCATION";
+    static final String EXTRA_OWNER_LOCATION = "com.example.vinh.Booklinkers.EXTRA_OWNER_LOCATION";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +56,8 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        origin = "Dai hoc khoa hoc tu nhien";
-        destination = "Dai hoc bach khoa";
+        origin = getIntent().getExtras().getString(EXTRA_YOUR_LOCATION);
+        destination = getIntent().getExtras().getString(EXTRA_OWNER_LOCATION);
 
         findDirection(origin, destination);
     }
@@ -139,20 +142,18 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
             //((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
             //((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
 
-
-
             originMarkers.add(mMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_start_location))
                     .title(route.startAddress)
                     .position(route.startLocation)));
             destinationMarkers.add(mMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_end_location))
                     .title(route.endAddress)
                     .position(route.endLocation)));
 
             PolylineOptions polylineOptions = new PolylineOptions().
                     geodesic(true).
-                    color(Color.BLUE).
+                    color(R.color.colorMapDirection).
                     width(10);
 
             for (int i = 0; i < route.points.size(); i++)
@@ -160,8 +161,12 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
 
             polylinePaths.add(mMap.addPolyline(polylineOptions));
 
-            final Snackbar mySnackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout),
-                    "hihi", Snackbar.LENGTH_INDEFINITE);
+            final Snackbar mySnackbar = Snackbar.make(
+                    findViewById(R.id.myCoordinatorLayout),
+                    "Duration - " + route.distance.text
+                    + "." + " Time - " + route.duration.text,
+                    Snackbar.LENGTH_INDEFINITE);
+
             mySnackbar.setAction("OK", (new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
