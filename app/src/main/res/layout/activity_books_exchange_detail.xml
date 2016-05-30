@@ -49,14 +49,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="View Information"
-                android:id="@+id/button6"
+                android:id="@+id/button_view_information"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Map Direction"
-                android:id="@+id/button5"
+                android:id="@+id/button_map_direction"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -78,7 +78,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView" />
+            android:id="@+id/listview_having_books" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView2" />
+            android:id="@+id/listview_needing_books" />
     </LinearLayout>
 
 </LinearLayout>

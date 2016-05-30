@@ -10,8 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
@@ -21,6 +24,9 @@ public class MainActivity extends AppCompatActivity
 
     ListView lvHavingBooks;
     ListView lvNeedingBooks;
+    TextView tvNavNameTitle;
+    private TextView tvNavEmailTitle;
+    private ImageView imgAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +43,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
 
         lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
+
+        imgAvatar = (ImageView)header.findViewById(R.id.image_nav_avatar);
+        tvNavNameTitle = (TextView)header.findViewById(R.id.textview_nav_name);
+        tvNavEmailTitle = (TextView)header.findViewById(R.id.textview_nav_email);
+        tvNavNameTitle.setText("hihihihihihi");
+        tvNavEmailTitle.setText("vinh@gmail.com");
+        imgAvatar.setImageResource(R.drawable.img_your_avatar);
+
 
         ArrayAdapter<String> havingBooksAdapter =
                 new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);

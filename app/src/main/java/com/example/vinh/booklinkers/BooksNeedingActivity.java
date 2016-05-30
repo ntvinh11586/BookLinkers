@@ -13,15 +13,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
 
+import java.util.List;
+
 public class BooksNeedingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView lvNeedingBooks;
+    private Button btnAddBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,20 @@ public class BooksNeedingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        btnAddBook = (Button)findViewById(R.id.button_add_book);
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
+
+
+
+
+
+        btnAddBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BooksNeedingActivity.this, BookAddingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayAdapter<String> needingBooksAdapter =
                 new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
@@ -53,6 +70,8 @@ public class BooksNeedingActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+
     }
 
     @Override
