@@ -90,12 +90,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_have_book) {
             Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, HavingBooksActivity.class);
+            Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_need_book) {
             Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, NeedingBooksActivity.class);
+            Intent intent = new Intent(MainActivity.this, BooksNeedingActivity.class);
             //finish();
             startActivity(intent);
         }

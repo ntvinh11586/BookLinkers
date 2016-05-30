@@ -20,7 +20,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView2"
-                android:src="@drawable/book_avatar"
+                android:src="@drawable/img_book_avatar"
                 android:layout_weight="1" />
 
 

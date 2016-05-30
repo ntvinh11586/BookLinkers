@@ -21,10 +21,10 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".HavingBooksActivity"
+            android:name=".BooksHavingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NeedingBooksActivity"
+            android:name=".BooksNeedingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BookInformation"
@@ -36,7 +36,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.vinh.booklinkers.LoginActivity" />
         </activity>
-        <activity android:name=".EditBookActivity"></activity>
+        <activity android:name=".BookEditingActivity" />
+        <activity android:name=".BookAddingActivity"></activity>
     </application>
 
 </manifest>

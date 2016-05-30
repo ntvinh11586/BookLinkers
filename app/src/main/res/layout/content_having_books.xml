@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.vinh.booklinkers.HavingBooksActivity"
-    tools:showIn="@layout/app_bar_having_books"
+    tools:context=".BooksHavingActivity"
+    tools:showIn="@layout/app_bar_books_having"
     android:orientation="vertical"
     android:gravity="left|top">
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add your books"
-        android:id="@+id/button"
+        android:id="@+id/button_add_book"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

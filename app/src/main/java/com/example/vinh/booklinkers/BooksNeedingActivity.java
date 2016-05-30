@@ -10,13 +10,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
 
-public class NeedingBooksActivity extends AppCompatActivity
+public class BooksNeedingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView lvNeedingBooks;
@@ -24,7 +26,7 @@ public class NeedingBooksActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_needing_books);
+        setContentView(R.layout.activity_books_needing);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,6 +46,13 @@ public class NeedingBooksActivity extends AppCompatActivity
                 new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
 
         lvNeedingBooks.setAdapter(needingBooksAdapter);
+        lvNeedingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(BooksNeedingActivity.this, BookInformation.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -75,12 +84,12 @@ public class NeedingBooksActivity extends AppCompatActivity
 
             return true;
         } else if (id == R.id.action_home) {
-            Intent intent = new Intent(NeedingBooksActivity.this, MainActivity.class);
+            Intent intent = new Intent(BooksNeedingActivity.this, MainActivity.class);
             finish();
             startActivity(intent);
             return true;
         } else if (id == R.id.action_log_out) {
-            Intent intent = new Intent(NeedingBooksActivity.this, LoginActivity.class);
+            Intent intent = new Intent(BooksNeedingActivity.this, LoginActivity.class);
             finish();
             startActivity(intent);
             return true;

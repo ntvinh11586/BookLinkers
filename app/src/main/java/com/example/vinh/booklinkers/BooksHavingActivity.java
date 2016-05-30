@@ -10,21 +10,25 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
 
-public class HavingBooksActivity extends AppCompatActivity
+public class BooksHavingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView lvHavingBooks;
+    private Button btnAddBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_having_books);
+        setContentView(R.layout.activity_books_having);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -38,12 +42,30 @@ public class HavingBooksActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // ListView
         lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
 
         ArrayAdapter<String> havingBooksAdapter =
                 new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
-
         lvHavingBooks.setAdapter(havingBooksAdapter);
+
+        lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(BooksHavingActivity.this, BookInformation.class);
+                startActivity(intent);
+            }
+        });
+
+        // Control
+        btnAddBook = (Button)findViewById(R.id.button_add_book);
+        btnAddBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BooksHavingActivity.this, BookAddingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -75,12 +97,12 @@ public class HavingBooksActivity extends AppCompatActivity
 
             return true;
         } else if (id == R.id.action_home) {
-            Intent intent = new Intent(HavingBooksActivity.this, MainActivity.class);
+            Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
             finish();
             startActivity(intent);
             return true;
         } else if (id == R.id.action_log_out) {
-            Intent intent = new Intent(HavingBooksActivity.this, LoginActivity.class);
+            Intent intent = new Intent(BooksHavingActivity.this, LoginActivity.class);
             finish();
             startActivity(intent);
             return true;
