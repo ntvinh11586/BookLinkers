@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class BookInformation extends AppCompatActivity {
+public class BookInformationActivity extends AppCompatActivity {
 
     Button btnEditBook;
 
@@ -32,7 +32,7 @@ public class BookInformation extends AppCompatActivity {
         btnEditBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookInformation.this, BookEditingActivity.class);
+                Intent intent = new Intent(BookInformationActivity.this, BookEditingActivity.class);
                 startActivity(intent);
             }
         });

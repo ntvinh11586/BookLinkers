@@ -98,6 +98,14 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, BooksNeedingActivity.class);
             //finish();
             startActivity(intent);
+        } else if (id == R.id.nav_information) {
+            Intent intent = new Intent(MainActivity.this, YourInformationActivity.class);
+            //finish();
+            startActivity(intent);
+        } else if (id == R.id.nav_search_book) {
+            Intent intent = new Intent(MainActivity.this, BooksSearchingActivity.class);
+            //finish();
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

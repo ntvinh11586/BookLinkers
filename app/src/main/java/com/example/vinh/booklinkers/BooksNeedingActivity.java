@@ -49,7 +49,7 @@ public class BooksNeedingActivity extends AppCompatActivity
         lvNeedingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(BooksNeedingActivity.this, BookInformation.class);
+                Intent intent = new Intent(BooksNeedingActivity.this, BookInformationActivity.class);
                 startActivity(intent);
             }
         });

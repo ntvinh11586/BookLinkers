@@ -19,16 +19,16 @@ import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
 
-public class BooksHavingActivity extends AppCompatActivity
+public class BooksSearchingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ListView lvHavingBooks;
-    private Button btnAddBook;
+    private Button btnSearch;
+    private ListView lvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_books_having);
+        setContentView(R.layout.activity_books_searching);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,30 +42,37 @@ public class BooksHavingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // ListView
-        lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
+        lvResult = (ListView) findViewById(R.id.listview_result);
+        btnSearch = (Button)findViewById(R.id.button_search);
 
-        ArrayAdapter<String> havingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
-        lvHavingBooks.setAdapter(havingBooksAdapter);
-
-        lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(BooksHavingActivity.this, BookInformationActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Control
-        btnAddBook = (Button)findViewById(R.id.button_add_book);
-        btnAddBook.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BooksHavingActivity.this, BookAddingActivity.class);
+                String[] result = getSearchResult();
+                ArrayAdapter<String> resultAdapter =
+                        new ArrayAdapter<String>(
+                                BooksSearchingActivity.this,
+                                R.layout.list_search_item, result);
+                lvResult.setAdapter(resultAdapter);
+            }
+        });
+
+        lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(
+                        BooksSearchingActivity.this,
+                        BooksExchangeDetailActivity.class);
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    private String[] getSearchResult() {
+        String[] res = {"a", "b", "c", "d"};
+        return res;
     }
 
     @Override
@@ -97,12 +104,12 @@ public class BooksHavingActivity extends AppCompatActivity
 
             return true;
         } else if (id == R.id.action_home) {
-            Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
+            Intent intent = new Intent(BooksSearchingActivity.this, MainActivity.class);
             finish();
             startActivity(intent);
             return true;
         } else if (id == R.id.action_log_out) {
-            Intent intent = new Intent(BooksHavingActivity.this, LoginActivity.class);
+            Intent intent = new Intent(BooksSearchingActivity.this, LoginActivity.class);
             finish();
             startActivity(intent);
             return true;
