@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.vinh.datatesting.ProcessingTest;
+import com.example.vinh.testers.LocalTesters;
 
 public class AccountCreatingActivity extends AppCompatActivity {
 
@@ -42,6 +42,8 @@ public class AccountCreatingActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     private boolean canCreateAccount(String username, String password, String email, String passwordAgain) {
@@ -54,7 +56,7 @@ public class AccountCreatingActivity extends AppCompatActivity {
     }
 
     private boolean isAvailableEmail(String email) {
-        if (!email.equals(ProcessingTest.email))
+        if (!email.equals(LocalTesters.email))
             return true;
         return false;
     }
@@ -66,7 +68,7 @@ public class AccountCreatingActivity extends AppCompatActivity {
     }
 
     private boolean isAvailableAccount(String username) {
-        if (!username.equals(ProcessingTest.username))
+        if (!username.equals(LocalTesters.username))
             return true;
         return false;
     }

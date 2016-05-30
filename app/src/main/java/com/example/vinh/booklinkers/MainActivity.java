@@ -1,15 +1,12 @@
 package com.example.vinh.booklinkers;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.vinh.datatesting.ProcessingTest;
+import com.example.vinh.testers.LocalTesters;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,9 +42,9 @@ public class MainActivity extends AppCompatActivity
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
 
         ArrayAdapter<String> havingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, ProcessingTest.havingBooksRecently);
+                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
         ArrayAdapter<String> needingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, ProcessingTest.needingBooksRecently);
+                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
 
         lvHavingBooks.setAdapter(havingBooksAdapter);
         lvNeedingBooks.setAdapter(needingBooksAdapter);
@@ -94,7 +91,12 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_have_book) {
             Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, HavingBooksActivity.class);
-            finish();
+            //finish();
+            startActivity(intent);
+        } else if (id == R.id.nav_need_book) {
+            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, NeedingBooksActivity.class);
+            //finish();
             startActivity(intent);
         }
 

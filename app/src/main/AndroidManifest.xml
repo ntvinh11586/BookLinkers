@@ -22,7 +22,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HavingBooksActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NeedingBooksActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BookInformation"
+            android:theme="@style/AppTheme"
+            android:parentActivityName="com.example.vinh.booklinkers.LoginActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.vinh.booklinkers.LoginActivity" />
 
         </activity>
     </application>

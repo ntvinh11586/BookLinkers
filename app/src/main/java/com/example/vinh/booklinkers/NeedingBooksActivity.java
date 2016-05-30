@@ -16,15 +16,15 @@ import android.widget.Toast;
 
 import com.example.vinh.testers.LocalTesters;
 
-public class HavingBooksActivity extends AppCompatActivity
+public class NeedingBooksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ListView lvHavingBooks;
+    private ListView lvNeedingBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_having_books);
+        setContentView(R.layout.activity_needing_books);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -38,12 +38,12 @@ public class HavingBooksActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
+        lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
 
-        ArrayAdapter<String> havingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
+        ArrayAdapter<String> needingBooksAdapter =
+                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
 
-        lvHavingBooks.setAdapter(havingBooksAdapter);
+        lvNeedingBooks.setAdapter(needingBooksAdapter);
     }
 
     @Override
@@ -75,12 +75,12 @@ public class HavingBooksActivity extends AppCompatActivity
 
             return true;
         } else if (id == R.id.action_home) {
-            Intent intent = new Intent(HavingBooksActivity.this, MainActivity.class);
+            Intent intent = new Intent(NeedingBooksActivity.this, MainActivity.class);
             finish();
             startActivity(intent);
             return true;
         } else if (id == R.id.action_log_out) {
-            Intent intent = new Intent(HavingBooksActivity.this, LoginActivity.class);
+            Intent intent = new Intent(NeedingBooksActivity.this, LoginActivity.class);
             finish();
             startActivity(intent);
             return true;

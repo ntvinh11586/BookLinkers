@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.vinh.datatesting.ProcessingTest;
+import com.example.vinh.testers.LocalTesters;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ProcessingTest.callProcessingTest();
+        LocalTesters.callProcessingTest();
 
         etUsername = (EditText)findViewById(R.id.edit_username);
         etPassword = (EditText)findViewById(R.id.edit_password);
@@ -54,11 +54,20 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button button2 = (Button)findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, BookInformation.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean isLoginCorrect(String username, String password) {
-        if (username.equals(ProcessingTest.username)
-                && password.equals(ProcessingTest.password))
+        if (username.equals(LocalTesters.username)
+                && password.equals(LocalTesters.password))
             return true;
 
         return false;

@@ -1,11 +1,9 @@
-package com.example.vinh.datatesting;
-
-import java.lang.reflect.Array;
+package com.example.vinh.testers;
 
 /**
  * Created by vinh on 29/05/16.
  */
-public class ProcessingTest {
+public class LocalTesters {
     public static String username;
     public static String password;
 
@@ -25,7 +23,7 @@ public class ProcessingTest {
     };
     public static String email = "vinh@gmail.com";
 
-    public ProcessingTest() {}
+    public LocalTesters() {}
 
     public static void callProcessingTest() {
         username = "";
