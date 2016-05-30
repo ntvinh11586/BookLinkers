@@ -4,31 +4,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_have_book"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_nav_having_books"
             android:title="Your Own Books" />
         <item
             android:id="@+id/nav_need_book"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_nav_needing_books"
             android:title="Your Needed Books" />
         <item
             android:id="@+id/nav_search_book"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Seaching Books" />
+            android:icon="@drawable/ic_nav_search"
+            android:title="Searching Books" />
         <item
             android:id="@+id/nav_information"
             android:icon="@drawable/ic_menu_manage"
             android:title="Your Information" />
         <item
             android:id="@+id/nav_setting"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_nav_settings"
             android:title="Settings" />
         <item
             android:id="@+id/nav_help"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_nav_help"
             android:title="Help" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_nav_about"
             android:title="About" />
     </group>
 </menu>

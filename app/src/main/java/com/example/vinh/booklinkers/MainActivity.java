@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity
         imgAvatar = (ImageView)header.findViewById(R.id.image_nav_avatar);
         tvNavNameTitle = (TextView)header.findViewById(R.id.textview_nav_name);
         tvNavEmailTitle = (TextView)header.findViewById(R.id.textview_nav_email);
-        tvNavNameTitle.setText("hihihihihihi");
-        tvNavEmailTitle.setText("vinh@gmail.com");
+        tvNavNameTitle.setText("The Vinh Nguyen");
+        tvNavEmailTitle.setText("ntvinh.11586@gmail.com");
         imgAvatar.setImageResource(R.drawable.img_your_avatar);
 
 
