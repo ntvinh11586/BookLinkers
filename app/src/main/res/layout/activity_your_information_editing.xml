@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".LoginActivity" >
+    tools:context=".YourInformationEditing"
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,22 +19,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_username"
-            android:textColor="@color/colorText"
-            android:hint="Username" />
+            android:hint="Your username" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_email"
+            android:hint="Your email" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_password"
             android:inputType="textPassword"
-            android:textColor="@color/colorText"
-            android:hint="Password" />
+            android:hint="Your password" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_birthday"
+            android:inputType="textPassword"
+            android:hint="Your birthday" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_address"
+            android:inputType="textPassword"
+            android:hint="Your address" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_phone"
+            android:inputType="textPassword"
+            android:hint="Your phone" />
+
     </LinearLayout>
 
-
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -43,17 +67,11 @@
         android:layout_marginTop="16dp">
 
         <Button
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:text="Log in"
-            android:id="@+id/button_login" />
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:id="@+id/button_create_account" />
+            android:text="Apply"
+            android:id="@+id/button_create_account"/>
+
     </LinearLayout>
 
 </LinearLayout>
-
