@@ -40,7 +40,7 @@
             android:id="@+id/textview_nav_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="abc@gmail.com"
+            android:text="vinh@gmail.com"
             android:fontFamily="sans-serif-condensed"
             android:layout_gravity="center_vertical"/>
 

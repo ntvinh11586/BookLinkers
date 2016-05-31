@@ -148,7 +148,7 @@ public class YourInformationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_have_book) {
-            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -25,6 +25,8 @@ import com.firebase.client.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity
     private TextView tvNavEmailTitle;
     private ImageView imgAvatar;
     private Firebase myFirebaseRef;
+    private ArrayList<String> booksHaving;
+    private ArrayList<String> booksNeeding;
+    ArrayAdapter<String> needingBooksAdapter;
+    ArrayAdapter<String> havingBooksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,15 +94,38 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+        booksHaving = new ArrayList<>();
+        booksNeeding = new ArrayList<>();
 
-
-        ArrayAdapter<String> havingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
-        ArrayAdapter<String> needingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
+        havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksHaving);
+        needingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksNeeding);
 
         lvHavingBooks.setAdapter(havingBooksAdapter);
         lvNeedingBooks.setAdapter(needingBooksAdapter);
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("books")
+                        .getChildren()) {
+                    if (!(boolean)postSnapshot.child("own").getValue())
+                        booksNeeding.add(postSnapshot.child("name").getValue().toString());
+                    needingBooksAdapter.notifyDataSetChanged();
+
+                    if ((boolean)postSnapshot.child("own").getValue())
+                        booksHaving.add(postSnapshot.child("name").getValue().toString());
+                    havingBooksAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
     }
 
     @Override
