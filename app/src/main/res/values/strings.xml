@@ -13,4 +13,6 @@
     <string name="title_activity_your_information">Your Personal Information</string>
     <string name="title_activity_owner_information">Owner Personal Information</string>
     <string name="title_activity_book_exchange_detail">Book Exchange Detail</string>
+    <string name="title_book_editing">Edit Book</string>
+    <string name="title_book_information">Book Information</string>
 </resources>

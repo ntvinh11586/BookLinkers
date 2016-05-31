@@ -16,7 +16,7 @@
             android:title="Searching Books" />
         <item
             android:id="@+id/nav_information"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_nav_info"
             android:title="Your Information" />
         <item
             android:id="@+id/nav_setting"
