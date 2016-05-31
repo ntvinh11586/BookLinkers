@@ -59,7 +59,8 @@
             android:label="@string/title_activity_book_adding" />
         <activity
             android:name=".YourInformationActivity"
-            android:label="@string/title_activity_your_information" />
+            android:label="@string/title_activity_your_information"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".OwnerInformationActivity"
             android:label="@string/title_activity_owner_information" />
