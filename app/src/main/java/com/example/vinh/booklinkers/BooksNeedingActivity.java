@@ -17,13 +17,23 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.example.vinh.Testers.LocalTesters;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class BooksNeedingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView lvNeedingBooks;
     private Button btnAddBook;
+    private Firebase myFirebaseRef;
+    private ArrayList<String> books;
+    private ArrayAdapter<String> needingBooksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,9 @@ public class BooksNeedingActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Firebase.setAndroidContext(BooksNeedingActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -57,15 +70,35 @@ public class BooksNeedingActivity extends AppCompatActivity
             }
         });
 
-        ArrayAdapter<String> needingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
-
+        books = new ArrayList<>();
+        needingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
         lvNeedingBooks.setAdapter(needingBooksAdapter);
+
+
         lvNeedingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(BooksNeedingActivity.this, BookInformationActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("books")
+                        .getChildren()) {
+                    if (!(boolean)postSnapshot.child("own").getValue())
+                        books.add(postSnapshot.child("name").getValue().toString());
+                    needingBooksAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
             }
         });
 

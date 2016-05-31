@@ -17,18 +17,32 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.example.vinh.Testers.LocalTesters;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class BooksHavingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView lvHavingBooks;
     private Button btnAddBook;
+    private Firebase myFirebaseRef;
+    ArrayList<String> books;
+    ArrayAdapter<String> havingBooksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books_having);
+
+        Firebase.setAndroidContext(BooksHavingActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,9 +59,28 @@ public class BooksHavingActivity extends AppCompatActivity
         // ListView
         lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
 
-        ArrayAdapter<String> havingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
+        books = new ArrayList<>();
+        havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
         lvHavingBooks.setAdapter(havingBooksAdapter);
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("books")
+                        .getChildren()) {
+                    if ((boolean)postSnapshot.child("own").getValue())
+                        books.add(postSnapshot.child("name").getValue().toString());
+                    havingBooksAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,6 +96,7 @@ public class BooksHavingActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BooksHavingActivity.this, BookAddingActivity.class);
+                //finish();
                 startActivity(intent);
             }
         });

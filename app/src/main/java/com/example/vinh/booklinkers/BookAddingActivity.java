@@ -1,17 +1,16 @@
 package com.example.vinh.booklinkers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.vinh.DataObjects.Book;
 import com.example.vinh.GlobalObject.ConnectingServerData;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 public class BookAddingActivity extends AppCompatActivity {
 
@@ -23,7 +22,9 @@ public class BookAddingActivity extends AppCompatActivity {
     String name;
     String author;
     String description;
+    boolean own;
     Book book;
+    private CheckBox cbOwningBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,7 @@ public class BookAddingActivity extends AppCompatActivity {
         etName = (EditText)findViewById(R.id.edit_name);
         etAuthor = (EditText)findViewById(R.id.edit_author);
         etDescription = (EditText)findViewById(R.id.edit_description);
-
-        book = new Book(name, author, description);
+        cbOwningBook = (CheckBox)findViewById(R.id.check_owner_book);
 
         btnApplyBooks = (Button)findViewById(R.id.button_apply_change);
         btnApplyBooks.setOnClickListener(new View.OnClickListener() {
@@ -46,14 +46,16 @@ public class BookAddingActivity extends AppCompatActivity {
                 name = etName.getText().toString();
                 author = etAuthor.getText().toString();
                 description = etDescription.getText().toString();
+                own = cbOwningBook.isChecked();
 
-                book = new Book(name, author, description);
+                book = new Book(name, author, description, own);
 
                 myFirebaseRef
                         .child(ConnectingServerData.username)
                         .child("books")
-                        .child(name)
+                        .push()
                         .setValue(book);
+
                 finish();
             }
         });
