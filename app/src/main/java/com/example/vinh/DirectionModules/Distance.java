@@ -1,4 +1,4 @@
-package com.example.vinh.Modules;
+package com.example.vinh.DirectionModules;
 
 public class Distance {
     public String text;

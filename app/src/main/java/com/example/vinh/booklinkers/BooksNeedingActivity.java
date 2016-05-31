@@ -17,9 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.vinh.testers.LocalTesters;
-
-import java.util.List;
+import com.example.vinh.Testers.LocalTesters;
 
 public class BooksNeedingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

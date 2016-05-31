@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.vinh.testers.LocalTesters;
+import com.example.vinh.DataObjects.User;
+import com.example.vinh.Testers.LocalTesters;
+import com.firebase.client.Firebase;
 
 public class AccountCreatingActivity extends AppCompatActivity {
 
@@ -35,14 +37,23 @@ public class AccountCreatingActivity extends AppCompatActivity {
                 password = etPassword.getText().toString();
                 passwordAgain = etPasswordAgain.getText().toString();
 
-                if (canCreateAccount(username, email, password, passwordAgain)) {
+                // always create account successful [test]
+                Firebase.setAndroidContext(AccountCreatingActivity.this);
+                Firebase myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
-                    // update db
+                User user = new User(username, password, email, "none", "none");
+                myFirebaseRef.child(username).child("information").setValue(user);
 
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
-                }
+                finish();
+
+//                if (canCreateAccount(username, email, password, passwordAgain)) {
+//                    // connect firebase
+//
+//
+//                    finish();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 

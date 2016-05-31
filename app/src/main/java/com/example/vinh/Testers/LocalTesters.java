@@ -1,10 +1,10 @@
-package com.example.vinh.testers;
+package com.example.vinh.Testers;
 
 /**
  * Created by vinh on 29/05/16.
  */
 public class LocalTesters {
-    public static String username;
+    public static String username = null;
     public static String password;
 
     public static String[] havingBooksRecently = {
@@ -21,13 +21,13 @@ public class LocalTesters {
             "Harry potter",
             "Aravigon"
     };
-    public static String email = "vinh@gmail.com";
+    public static String email = null;
 
     public LocalTesters() {}
 
     public static void callProcessingTest() {
-        username = "";
-        password = "";
+        username = "vinh123";
+        password = "123";
 
     }
 }

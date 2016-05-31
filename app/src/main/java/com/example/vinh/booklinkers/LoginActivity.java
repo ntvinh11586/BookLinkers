@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.vinh.testers.LocalTesters;
+import com.example.vinh.GlobalObject.ConnectingServerData;
+import com.example.vinh.Testers.LocalTesters;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -17,6 +21,11 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnCreateNewAccount;
     String username, password;
 
+    String tmpUsername;
+    String tmpPassword;
+    boolean bUsername = false;
+    boolean bPassword = false;
+    Firebase myFirebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +39,55 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (Button)findViewById(R.id.button_login);
         btnCreateNewAccount = (Button)findViewById(R.id.button_create_account);
 
+        Firebase.setAndroidContext(LoginActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
 
-                if (isLoginCorrect(username, password)) {
-                    //Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    finish();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
-                }
+                myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            if (username.equals(postSnapshot.getKey().toString()))
+                                bUsername = true;
+                        }
+
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            tmpPassword = postSnapshot
+                                    .child("information")
+                                    .child("password")
+                                    .getValue()
+                                    .toString();
+                            if (tmpPassword.equals(password))
+                                bPassword = true;
+                        }
+
+                        if (bUsername && bPassword) {
+                            ConnectingServerData.username = username;
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+
+//                if (isLoginCorrect(username, password)) {
+//                    //Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                    finish();
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 

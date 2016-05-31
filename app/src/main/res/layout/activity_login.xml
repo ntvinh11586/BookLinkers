@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_username"
-            android:textColor="@color/colorText"
             android:hint="Username" />
 
 
@@ -28,7 +27,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_password"
             android:inputType="textPassword"
-            android:textColor="@color/colorText"
             android:hint="Password" />
     </LinearLayout>
 

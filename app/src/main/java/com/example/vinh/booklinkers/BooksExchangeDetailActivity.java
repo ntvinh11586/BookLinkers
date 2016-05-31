@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.vinh.testers.LocalTesters;
+import com.example.vinh.Testers.LocalTesters;
 
 public class BooksExchangeDetailActivity extends AppCompatActivity {
 
