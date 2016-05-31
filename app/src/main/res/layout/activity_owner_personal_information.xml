@@ -30,7 +30,7 @@
             android:layout_height="0dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Nguyen The Vinh"
-            android:id="@+id/textView9"
+            android:id="@+id/text_name"
             android:layout_weight="1"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
@@ -52,14 +52,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Call"
-                android:id="@+id/button3"
+                android:id="@+id/button_call"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Send Message"
-                android:id="@+id/button4"
+                android:id="@+id/button_send_message"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Username      ntvinh11586"
-            android:id="@+id/textView11"
+            android:id="@+id/text_username"
             android:paddingBottom="8dp"
             android:paddingTop="8dp" />
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Email     ntvinh.11586@gmail.com"
-            android:id="@+id/textView12"
+            android:id="@+id/text_mail"
             android:paddingBottom="8dp"
             android:paddingTop="8dp" />
 
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Birthday      08/06/1995"
-            android:id="@+id/textView13"
+            android:id="@+id/text_birthday"
             android:paddingBottom="8dp"
             android:paddingTop="8dp" />
 
@@ -104,8 +104,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Phone     01269748726"
-            android:id="@+id/textView17"
+            android:text="Phone     0937761608"
+            android:id="@+id/text_phone"
             android:paddingBottom="8dp"
             android:paddingTop="8dp" />
 
@@ -113,19 +113,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Address       17690a, Duong Quang Ham, P5, Go Vap, Ho Chi Minh city"
-            android:id="@+id/textView18"
+            android:text="Address       dai hoc khoa hoc tu nhien"
+            android:id="@+id/text_address"
             android:paddingBottom="8dp"
             android:paddingTop="8dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Day member        30/05/2016"
-            android:id="@+id/textView14"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp" />
     </LinearLayout>
 
 </LinearLayout>

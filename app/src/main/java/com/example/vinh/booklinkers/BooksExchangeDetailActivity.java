@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -37,8 +38,8 @@ public class BooksExchangeDetailActivity extends AppCompatActivity {
                         BooksExchangeDetailActivity.this,
                         OwnerDirectionMapsActivity.class);
 
-                intent.putExtra(EXTRA_YOUR_LOCATION, "dai hoc khoa hoc tu nhien");
-                intent.putExtra(EXTRA_OWNER_LOCATION, "dai hoc bach khoa");
+                intent.putExtra(EXTRA_YOUR_LOCATION, "176/90A, Duong Quang Ham, P5, Go Vap");
+                intent.putExtra(EXTRA_OWNER_LOCATION, "dai hoc khoa hoc tu nhien");
 
                 startActivity(intent);
             }
@@ -58,5 +59,13 @@ public class BooksExchangeDetailActivity extends AppCompatActivity {
                 new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
 
         lvHavingBooks.setAdapter(havingBooksAdapter);
+
+        lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(BooksExchangeDetailActivity.this, BookInformationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

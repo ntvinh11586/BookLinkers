@@ -69,7 +69,7 @@ public class BooksSearchingActivity extends AppCompatActivity
     }
 
     private String[] getSearchResult() {
-        String[] res = {"a", "b", "c", "d"};
+        String[] res = {"Nguyen The Vinh - ntvinh11586"};
         return res;
     }
 

@@ -8,11 +8,7 @@ public class LocalTesters {
     public static String password;
 
     public static String[] havingBooksRecently = {
-            "the lord of the ring",
-            "1986",
-            "Polictic",
-            "Android Programming Books",
-            "IOS Programming Books"
+            "The Lord of The Rings"
     };
     public static String[] needingBooksRecently = {
             "fly",
