@@ -16,7 +16,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.example.vinh.Testers.LocalTesters;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     TextView tvNavNameTitle;
     private TextView tvNavEmailTitle;
     private ImageView imgAvatar;
+    private Firebase myFirebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +52,42 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
 
+
+        Firebase.setAndroidContext(MainActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
+
         lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
 
         imgAvatar = (ImageView)header.findViewById(R.id.image_nav_avatar);
         tvNavNameTitle = (TextView)header.findViewById(R.id.textview_nav_name);
         tvNavEmailTitle = (TextView)header.findViewById(R.id.textview_nav_email);
-        tvNavNameTitle.setText("The Vinh Nguyen");
-        tvNavEmailTitle.setText("ntvinh.11586@gmail.com");
+
         imgAvatar.setImageResource(R.drawable.img_your_avatar);
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tvNavNameTitle.setText(dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("information")
+                        .child("name")
+                        .getValue().toString());
+                tvNavEmailTitle.setText(dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("information")
+                        .child("email")
+                        .getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
 
 
         ArrayAdapter<String> havingBooksAdapter =
@@ -91,6 +126,8 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_home) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -104,7 +141,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_have_book) {
             Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);
-            //finish();
             startActivity(intent);
         } else if (id == R.id.nav_need_book) {
             Intent intent = new Intent(MainActivity.this, BooksNeedingActivity.class);
@@ -112,7 +148,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_information) {
             Intent intent = new Intent(MainActivity.this, YourInformationActivity.class);
-            //finish();
+            finish();
             startActivity(intent);
         } else if (id == R.id.nav_search_book) {
             Intent intent = new Intent(MainActivity.this, BooksSearchingActivity.class);

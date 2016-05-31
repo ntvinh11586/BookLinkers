@@ -85,7 +85,9 @@
         <activity
             android:name=".OwnerDirectionMapsActivity"
             android:label="@string/title_activity_owner_direction_maps" />
-        <activity android:name=".YourInformationEditingActivity" />
+        <activity
+            android:name=".YourInformationEditingActivity"
+            android:label="@string/title_activity_your_information_editing"/>
     </application>
 
 </manifest>

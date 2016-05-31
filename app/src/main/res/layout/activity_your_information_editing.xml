@@ -18,8 +18,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_username"
-            android:hint="Your username" />
+            android:id="@+id/edit_name"
+            android:hint="Your name" />
 
         <EditText
             android:layout_width="match_parent"
@@ -38,21 +38,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_birthday"
-            android:inputType="textPassword"
             android:hint="Your birthday" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_address"
-            android:inputType="textPassword"
             android:hint="Your address" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_phone"
-            android:inputType="textPassword"
             android:hint="Your phone" />
 
     </LinearLayout>

@@ -15,4 +15,5 @@
     <string name="title_activity_book_exchange_detail">Book Exchange Detail</string>
     <string name="title_book_editing">Edit Book</string>
     <string name="title_book_information">Book Information</string>
+    <string name="title_activity_your_information_editing">Information Editing</string>
 </resources>
