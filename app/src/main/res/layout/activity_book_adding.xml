@@ -20,23 +20,20 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-            android:textColor="@color/colorText"
+            android:id="@+id/edit_name"
             android:hint="Book name" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3"
-            android:textColor="@color/colorText"
+            android:id="@+id/edit_author"
             android:hint="Author" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText5"
+            android:id="@+id/edit_description"
             android:inputType="textMultiLine"
-            android:textColor="@color/colorText"
             android:hint="Description"/>
 
         </LinearLayout>

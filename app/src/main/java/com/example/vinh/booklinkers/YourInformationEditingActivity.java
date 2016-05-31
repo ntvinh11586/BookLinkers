@@ -88,6 +88,26 @@ public class YourInformationEditingActivity extends AppCompatActivity {
                         .child("information")
                         .child("name")
                         .setValue(etName.getText().toString());
+                myFirebaseRef.child(ConnectingServerData.username)
+                        .child("information")
+                        .child("password")
+                        .setValue(etPassword.getText().toString());
+                myFirebaseRef.child(ConnectingServerData.username)
+                        .child("information")
+                        .child("email")
+                        .setValue(etEmail.getText().toString());
+                myFirebaseRef.child(ConnectingServerData.username)
+                        .child("information")
+                        .child("phone")
+                        .setValue(etPhone.getText().toString());
+                myFirebaseRef.child(ConnectingServerData.username)
+                        .child("information")
+                        .child("address")
+                        .setValue(etAddress.getText().toString());
+                myFirebaseRef.child(ConnectingServerData.username)
+                        .child("information")
+                        .child("birthday")
+                        .setValue(etBirthday.getText().toString());
 
                 finish();
             }
