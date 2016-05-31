@@ -33,9 +33,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BooksHavingActivity"
+            android:label="@string/title_activity_books_having"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BooksNeedingActivity"
+            android:label="@string/title_activity_books_needing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BookInformationActivity"
@@ -48,13 +50,21 @@
                 android:value="com.example.vinh.booklinkers.LoginActivity" />
         </activity>
         <activity android:name=".BookEditingActivity" />
-        <activity android:name=".BookAddingActivity" />
-        <activity android:name=".YourInformationActivity" />
-        <activity android:name=".OwnerInformationActivity" />
+        <activity
+            android:name=".BookAddingActivity"
+            android:label="@string/title_activity_book_adding" />
+        <activity
+            android:name=".YourInformationActivity"
+            android:label="@string/title_activity_your_information"/>
+        <activity
+            android:name=".OwnerInformationActivity"
+            android:label="@string/title_activity_owner_information" />
         <activity
             android:name=".BooksSearchingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BooksExchangeDetailActivity" />
+        <activity
+            android:name=".BooksExchangeDetailActivity"
+            android:label="@string/title_activity_book_exchange_detail"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

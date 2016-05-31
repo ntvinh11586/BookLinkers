@@ -104,12 +104,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_have_book) {
-            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_need_book) {
-            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, BooksNeedingActivity.class);
             //finish();
             startActivity(intent);

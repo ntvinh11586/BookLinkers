@@ -56,10 +56,7 @@ public class BooksExchangeDetailActivity extends AppCompatActivity {
 
         ArrayAdapter<String> havingBooksAdapter =
                 new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.havingBooksRecently);
-        ArrayAdapter<String> needingBooksAdapter =
-                new ArrayAdapter<String>(this, R.layout.list_book_item, LocalTesters.needingBooksRecently);
 
         lvHavingBooks.setAdapter(havingBooksAdapter);
-        lvNeedingBooks.setAdapter(needingBooksAdapter);
     }
 }

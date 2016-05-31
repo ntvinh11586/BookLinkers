@@ -8,6 +8,6 @@ public class OwnerInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_onwer_personal_information);
+        setContentView(R.layout.activity_owner_personal_information);
     }
 }
