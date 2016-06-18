@@ -34,6 +34,10 @@ public class BooksNeedingActivity extends AppCompatActivity
     private Firebase myFirebaseRef;
     private ArrayList<String> books;
     private ArrayAdapter<String> needingBooksAdapter;
+    private String a;
+
+    private static final String EXTRA_USERNAME = "EXTRA_USERNAME";
+    private static final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +61,6 @@ public class BooksNeedingActivity extends AppCompatActivity
 
         btnAddBook = (Button)findViewById(R.id.button_add_book);
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
-
-
-
-
-
-        btnAddBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BooksNeedingActivity.this, BookAddingActivity.class);
-                startActivity(intent);
-            }
-        });
 
         books = new ArrayList<>();
         needingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
@@ -98,6 +90,45 @@ public class BooksNeedingActivity extends AppCompatActivity
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+        lvNeedingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                a = lvNeedingBooks.getItemAtPosition(position).toString();
+                myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot: dataSnapshot
+                                .child(ConnectingServerData.username)
+                                .child("books")
+                                .getChildren()) {
+                            if (postSnapshot.child("name")
+                                    .getValue()
+                                    .toString()
+                                    .equals(a)) {
+                                Intent intent = new Intent(BooksNeedingActivity.this,
+                                        BookInformationActivity.class);
+
+                                intent.putExtra(EXTRA_USERNAME, ConnectingServerData.username);
+
+                                intent.putExtra(EXTRA_BOOK_NAME,
+                                        postSnapshot
+                                                .getKey().toString());
+                                startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
 
             }
         });

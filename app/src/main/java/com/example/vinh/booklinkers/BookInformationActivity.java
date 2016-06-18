@@ -70,17 +70,6 @@ public class BookInformationActivity extends AppCompatActivity {
                 tvBookAuthor.setText(snapshot.child("author").getValue().toString());
                 tvBookDescription.setText(snapshot.child("description").getValue().toString());
 
-
-
-
-
-//                tvName.setText(snapshot.child("name").getValue().toString());
-//                tvUsername.setText(snapshot.child("username").getValue().toString());
-//                tvEmail.setText(snapshot.child("email").getValue().toString());
-//
-//                tvBirthday.setText(snapshot.child("birthday").getValue().toString());
-//                tvPhone.setText(snapshot.child("phone").getValue().toString());
-//                tvAddress.setText(snapshot.child("address").getValue().toString());
             }
 
             @Override
@@ -98,6 +87,9 @@ public class BookInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookInformationActivity.this, BookEditingActivity.class);
+
+                intent.putExtra(EXTRA_BOOK_NAME, gt2);
+
                 startActivity(intent);
             }
         });

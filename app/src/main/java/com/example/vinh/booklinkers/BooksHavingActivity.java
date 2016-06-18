@@ -91,12 +91,7 @@ public class BooksHavingActivity extends AppCompatActivity
         lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(BooksHavingActivity.this, BookInformationActivity.class);
-                //intent.putExtra(EXTRA_USERNAME, BOOK_ID);
-//                intent.putExtra(EXTRA_YOUR_LOCATION, "176/90A, Duong Quang Ham, P5, Go Vap");
-//                intent.putExtra(EXTRA_OWNER_LOCATION, "dai hoc khoa hoc tu nhien");
 
-//                lvHavingBooks.getItemAtPosition()
                 a = lvHavingBooks.getItemAtPosition(position).toString();
                 myFirebaseRef.addValueEventListener(new ValueEventListener() {
                     @Override

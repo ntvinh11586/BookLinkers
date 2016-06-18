@@ -103,7 +103,7 @@
                         android:layout_width="197dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="The Lord of The Ring"
+                        android:text="The Lord of The Ringn"
                         android:id="@+id/text_book_name"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp" />
