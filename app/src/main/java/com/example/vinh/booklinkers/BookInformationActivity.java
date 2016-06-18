@@ -18,6 +18,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class BookInformationActivity extends AppCompatActivity {
 
     private final String EXTRA_USERNAME = "EXTRA_USERNAME";
@@ -29,6 +31,7 @@ public class BookInformationActivity extends AppCompatActivity {
     private TextView tvBookDescription;
     private String gt1;
     private String gt2;
+    private TextView tvBookName;
 
 
     @Override
@@ -43,7 +46,9 @@ public class BookInformationActivity extends AppCompatActivity {
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(myToolbar);
 
-        tvBookTitle = (TextView)findViewById(R.id.text_book_name);
+//        tvBookTitle = (TextView)findViewById(R.id.text_book_name);
+        tvBookName = (TextView)findViewById(R.id.text_book_name);
+        tvBookTitle = (TextView)findViewById(R.id.text_book_title);
         tvBookAuthor = (TextView)findViewById(R.id.text_book_author);
         tvBookDescription = (TextView)findViewById(R.id.text_book_description);
 
@@ -60,6 +65,7 @@ public class BookInformationActivity extends AppCompatActivity {
                         .child("books")
                         .child(gt2);
 
+                tvBookName.setText(snapshot.child("name").getValue().toString());
                 tvBookTitle.setText(snapshot.child("name").getValue().toString());
                 tvBookAuthor.setText(snapshot.child("author").getValue().toString());
                 tvBookDescription.setText(snapshot.child("description").getValue().toString());
