@@ -28,6 +28,15 @@
             android:id="@+id/edit_password"
             android:inputType="textPassword"
             android:hint="Password" />
+
+        <CheckBox
+            android:id="@+id/check_save_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextPassword"
+            android:text="Remember Password"
+            android:checked="false" />
+
     </LinearLayout>
 
 
