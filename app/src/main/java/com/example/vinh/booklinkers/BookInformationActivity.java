@@ -1,9 +1,12 @@
 package com.example.vinh.booklinkers;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +25,7 @@ import org.w3c.dom.Text;
 
 public class BookInformationActivity extends AppCompatActivity {
 
+    private final String EXTRA_REMOVE_BOOK = "EXTRA_REMOVE_BOOK";
     private final String EXTRA_USERNAME = "EXTRA_USERNAME";
     private final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
     Button btnEditBook;
@@ -32,6 +36,7 @@ public class BookInformationActivity extends AppCompatActivity {
     private String gt1;
     private String gt2;
     private TextView tvBookName;
+    private Button btnRemoveBooks;
 
 
     @Override
@@ -46,7 +51,6 @@ public class BookInformationActivity extends AppCompatActivity {
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(myToolbar);
 
-//        tvBookTitle = (TextView)findViewById(R.id.text_book_name);
         tvBookName = (TextView)findViewById(R.id.text_book_name);
         tvBookTitle = (TextView)findViewById(R.id.text_book_title);
         tvBookAuthor = (TextView)findViewById(R.id.text_book_author);
@@ -55,7 +59,7 @@ public class BookInformationActivity extends AppCompatActivity {
         gt1 = getIntent().getExtras().getString(EXTRA_USERNAME);
         gt2 = getIntent().getExtras().getString(EXTRA_BOOK_NAME);
 
-        Toast.makeText(getApplicationContext(), gt1 + " " + gt2, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), gt1 + " " + gt2, Toast.LENGTH_SHORT).show();
 
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -65,11 +69,12 @@ public class BookInformationActivity extends AppCompatActivity {
                         .child("books")
                         .child(gt2);
 
-                tvBookName.setText(snapshot.child("name").getValue().toString());
-                tvBookTitle.setText(snapshot.child("name").getValue().toString());
-                tvBookAuthor.setText(snapshot.child("author").getValue().toString());
-                tvBookDescription.setText(snapshot.child("description").getValue().toString());
-
+                if (snapshot.getValue() != null) {
+                    tvBookName.setText(snapshot.child("name").getValue().toString());
+                    tvBookTitle.setText(snapshot.child("name").getValue().toString());
+                    tvBookAuthor.setText(snapshot.child("author").getValue().toString());
+                    tvBookDescription.setText(snapshot.child("description").getValue().toString());
+                }
             }
 
             @Override
@@ -91,6 +96,39 @@ public class BookInformationActivity extends AppCompatActivity {
                 intent.putExtra(EXTRA_BOOK_NAME, gt2);
 
                 startActivity(intent);
+            }
+        });
+
+        btnRemoveBooks = (Button)findViewById(R.id.button_remove_book);
+        btnRemoveBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder mydialog = new AlertDialog.Builder(BookInformationActivity.this);
+                mydialog.setTitle("Remove");
+                mydialog.setMessage("Are you sure to remove this books? This process cannot be undo");
+
+                mydialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                });
+
+                mydialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.putExtra(EXTRA_REMOVE_BOOK, gt2);
+
+                        setResult(RESULT_OK, intent);
+
+                        finish();
+                    }
+                });
+
+
+
+                mydialog.show();
+
             }
         });
     }
@@ -126,4 +164,5 @@ public class BookInformationActivity extends AppCompatActivity {
 
         }
     }
+
 }

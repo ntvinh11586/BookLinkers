@@ -32,15 +32,33 @@ import java.util.ArrayList;
 public class BooksHavingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String EXTRA_USERNAME = "EXTRA_USERNAME";
-    private static final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
+    private final String EXTRA_USERNAME = "EXTRA_USERNAME";
+    private final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
+    private final String EXTRA_REMOVE_BOOK = "EXTRA_REMOVE_BOOK";
+    private final int EXTRA_REQUEST_CODE = 999;
+
     ListView lvHavingBooks;
     private Button btnAddBook;
     private Firebase myFirebaseRef;
     ArrayList<String> books;
     ArrayAdapter<String> havingBooksAdapter;
 
-    String a;
+    String strLvItem;
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == EXTRA_REQUEST_CODE && resultCode == RESULT_OK) {
+            String kq = data.getStringExtra(EXTRA_REMOVE_BOOK).toString();
+
+            myFirebaseRef.child(ConnectingServerData.username)
+                .child("books")
+                .child(kq)
+                .removeValue();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +110,7 @@ public class BooksHavingActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                a = lvHavingBooks.getItemAtPosition(position).toString();
+                strLvItem = lvHavingBooks.getItemAtPosition(position).toString();
                 myFirebaseRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -103,16 +121,16 @@ public class BooksHavingActivity extends AppCompatActivity
                             if (postSnapshot.child("name")
                                     .getValue()
                                     .toString()
-                                    .equals(a)) {
+                                    .equals(strLvItem)) {
                                 Intent intent = new Intent(BooksHavingActivity.this,
                                         BookInformationActivity.class);
 
                                 intent.putExtra(EXTRA_USERNAME, ConnectingServerData.username);
 
                                 intent.putExtra(EXTRA_BOOK_NAME,
-                                        postSnapshot
-                                        .getKey().toString());
-                                startActivity(intent);
+                                        postSnapshot.getKey().toString());
+
+                                startActivityForResult(intent, EXTRA_REQUEST_CODE);
                             }
                         }
                     }

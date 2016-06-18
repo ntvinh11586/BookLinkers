@@ -83,59 +83,59 @@ public class MainActivity extends AppCompatActivity
 
         imgAvatar.setImageResource(R.drawable.img_your_avatar);
 
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                tvNavNameTitle.setText(dataSnapshot
-                        .child(ConnectingServerData.username)
-                        .child("information")
-                        .child("name")
-                        .getValue().toString());
-                tvNavEmailTitle.setText(dataSnapshot
-                        .child(ConnectingServerData.username)
-                        .child("information")
-                        .child("email")
-                        .getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
-
-        booksHaving = new ArrayList<>();
-        booksNeeding = new ArrayList<>();
-
-        havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksHaving);
-        needingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksNeeding);
-
-        lvHavingBooks.setAdapter(havingBooksAdapter);
-        lvNeedingBooks.setAdapter(needingBooksAdapter);
-
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot
-                        .child(ConnectingServerData.username)
-                        .child("books")
-                        .getChildren()) {
-                    if (!(boolean)postSnapshot.child("own").getValue())
-                        booksNeeding.add(postSnapshot.child("name").getValue().toString());
-                    needingBooksAdapter.notifyDataSetChanged();
-
-                    if ((boolean)postSnapshot.child("own").getValue())
-                        booksHaving.add(postSnapshot.child("name").getValue().toString());
-                    havingBooksAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
+//        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                tvNavNameTitle.setText(dataSnapshot
+//                        .child(ConnectingServerData.username)
+//                        .child("information")
+//                        .child("name")
+//                        .getValue().toString());
+//                tvNavEmailTitle.setText(dataSnapshot
+//                        .child(ConnectingServerData.username)
+//                        .child("information")
+//                        .child("email")
+//                        .getValue().toString());
+//            }
+//
+//            @Override
+//            public void onCancelled(FirebaseError firebaseError) {
+//
+//            }
+//        });
+//
+//
+//        booksHaving = new ArrayList<>();
+//        booksNeeding = new ArrayList<>();
+//
+//        havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksHaving);
+//        needingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksNeeding);
+//
+//        lvHavingBooks.setAdapter(havingBooksAdapter);
+//        lvNeedingBooks.setAdapter(needingBooksAdapter);
+//
+//        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot postSnapshot: dataSnapshot
+//                        .child(ConnectingServerData.username)
+//                        .child("books")
+//                        .getChildren()) {
+//                    if (!(boolean)postSnapshot.child("own").getValue())
+//                        booksNeeding.add(postSnapshot.child("name").getValue().toString());
+//                    needingBooksAdapter.notifyDataSetChanged();
+//
+//                    if ((boolean)postSnapshot.child("own").getValue())
+//                        booksHaving.add(postSnapshot.child("name").getValue().toString());
+//                    havingBooksAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(FirebaseError firebaseError) {
+//
+//            }
+//        });
 
     }
 
