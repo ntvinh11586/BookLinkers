@@ -39,7 +39,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Owner Book? "
+            android:text="Have you got this book?"
             android:id="@+id/check_owner_book"
             android:checked="true" />
 

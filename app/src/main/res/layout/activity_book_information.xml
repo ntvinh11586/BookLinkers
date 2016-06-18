@@ -13,7 +13,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="2">
 
         <ImageView
@@ -30,7 +30,7 @@
             android:layout_height="0dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="The Lord of The Ring"
-            android:id="@+id/textView9"
+            android:id="@+id/text_book_name"
             android:layout_weight="1"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Author       J.R.R. Tolkien"
-            android:id="@+id/textView18"
+            android:id="@+id/text_book_author"
             android:paddingBottom="8dp"
             android:paddingTop="8dp" />
 
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/text_book_description"
             android:text="Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wore them: the leaders of Men, Elves and Dwarves. He was later vanquished in battle by an alliance of Elves and Men led by Elendil and Gil-galad. Isildur, a ruler of Men, cut the One Ring from Sauron's finger, claiming it as an heirloom for his line, and Sauron lost his physical form. When Isildur was later ambushed and killed by Orcs, the Ring was lost in the River Anduin at Gladden Fields."/>
     </LinearLayout>
 

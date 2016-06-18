@@ -9,10 +9,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.vinh.GlobalObject.ConnectingServerData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class BookInformationActivity extends AppCompatActivity {
 
+    private final String EXTRA_USERNAME = "EXTRA_USERNAME";
+    private final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
     Button btnEditBook;
+    private Firebase myFirebaseRef;
+    private TextView tvBookTitle;
+    private TextView tvBookAuthor;
+    private TextView tvBookDescription;
+    private String gt1;
+    private String gt2;
 
 
     @Override
@@ -20,9 +36,52 @@ public class BookInformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_information);
 
+        Firebase.setAndroidContext(BookInformationActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
         // I don't know why in this case, I can't set the support actionbar
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(myToolbar);
+
+        tvBookTitle = (TextView)findViewById(R.id.text_book_name);
+        tvBookAuthor = (TextView)findViewById(R.id.text_book_author);
+        tvBookDescription = (TextView)findViewById(R.id.text_book_description);
+
+        gt1 = getIntent().getExtras().getString(EXTRA_USERNAME);
+        gt2 = getIntent().getExtras().getString(EXTRA_BOOK_NAME);
+
+        Toast.makeText(getApplicationContext(), gt1 + " " + gt2, Toast.LENGTH_SHORT).show();
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot snapshot = dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("books")
+                        .child(gt2);
+
+                tvBookTitle.setText(snapshot.child("name").getValue().toString());
+                tvBookAuthor.setText(snapshot.child("author").getValue().toString());
+                tvBookDescription.setText(snapshot.child("description").getValue().toString());
+
+
+
+
+
+//                tvName.setText(snapshot.child("name").getValue().toString());
+//                tvUsername.setText(snapshot.child("username").getValue().toString());
+//                tvEmail.setText(snapshot.child("email").getValue().toString());
+//
+//                tvBirthday.setText(snapshot.child("birthday").getValue().toString());
+//                tvPhone.setText(snapshot.child("phone").getValue().toString());
+//                tvAddress.setText(snapshot.child("address").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         // set the Up Button
         ActionBar ab = getSupportActionBar();

@@ -32,11 +32,15 @@ import java.util.ArrayList;
 public class BooksHavingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String EXTRA_USERNAME = "EXTRA_USERNAME";
+    private static final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
     ListView lvHavingBooks;
     private Button btnAddBook;
     private Firebase myFirebaseRef;
     ArrayList<String> books;
     ArrayAdapter<String> havingBooksAdapter;
+
+    String a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +91,43 @@ public class BooksHavingActivity extends AppCompatActivity
         lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(BooksHavingActivity.this, BookInformationActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(BooksHavingActivity.this, BookInformationActivity.class);
+                //intent.putExtra(EXTRA_USERNAME, BOOK_ID);
+//                intent.putExtra(EXTRA_YOUR_LOCATION, "176/90A, Duong Quang Ham, P5, Go Vap");
+//                intent.putExtra(EXTRA_OWNER_LOCATION, "dai hoc khoa hoc tu nhien");
+
+//                lvHavingBooks.getItemAtPosition()
+                a = lvHavingBooks.getItemAtPosition(position).toString();
+                myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot: dataSnapshot
+                                .child(ConnectingServerData.username)
+                                .child("books")
+                                .getChildren()) {
+                            if (postSnapshot.child("name")
+                                    .getValue()
+                                    .toString()
+                                    .equals(a)) {
+                                Intent intent = new Intent(BooksHavingActivity.this,
+                                        BookInformationActivity.class);
+
+                                intent.putExtra(EXTRA_USERNAME, ConnectingServerData.username);
+
+                                intent.putExtra(EXTRA_BOOK_NAME,
+                                        postSnapshot
+                                        .getKey().toString());
+                                startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+
             }
         });
 
@@ -98,6 +137,7 @@ public class BooksHavingActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BooksHavingActivity.this, BookAddingActivity.class);
+
                 //finish();
                 startActivity(intent);
             }

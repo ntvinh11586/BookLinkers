@@ -34,6 +34,10 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
 
+    final String EXTRA_LOGIN_PREFERENCES = "EXTRA_LOGIN_PREFERENCES";
+    final String EXTRA_SAVE_LOGIN = "EXTRA_SAVE_LOGIN";
+    final String EXTRA_USER_NAME = "EXTRA_USER_NAME";
+    final String EXTRA_PASSWORD = "EXTRA_PASSWORD";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         btnCreateNewAccount = (Button)findViewById(R.id.button_create_account);
         cbRememberPassword = (CheckBox)findViewById(R.id.check_save_login);
 
-        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPreferences = getSharedPreferences(EXTRA_LOGIN_PREFERENCES, MODE_PRIVATE);
 
         loginPrefsEditor = loginPreferences.edit();
 
-        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        saveLogin = loginPreferences.getBoolean(EXTRA_SAVE_LOGIN, false);
 
         if (saveLogin == true) {
-            etUsername.setText(loginPreferences.getString("username", ""));
-            etPassword.setText(loginPreferences.getString("password", ""));
+            etUsername.setText(loginPreferences.getString(EXTRA_USER_NAME, ""));
+            etPassword.setText(loginPreferences.getString(EXTRA_PASSWORD, ""));
             cbRememberPassword.setChecked(true);
         }
 
@@ -69,9 +73,9 @@ public class LoginActivity extends AppCompatActivity {
                 password = etPassword.getText().toString();
 
                 if (cbRememberPassword.isChecked()) {
-                    loginPrefsEditor.putBoolean("saveLogin", true);
-                    loginPrefsEditor.putString("username", username);
-                    loginPrefsEditor.putString("password", password);
+                    loginPrefsEditor.putBoolean(EXTRA_SAVE_LOGIN, true);
+                    loginPrefsEditor.putString(EXTRA_USER_NAME, username);
+                    loginPrefsEditor.putString(EXTRA_PASSWORD, password);
                     loginPrefsEditor.commit();
                 } else {
                     loginPrefsEditor.clear();

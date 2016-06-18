@@ -90,7 +90,7 @@ public class BooksNeedingActivity extends AppCompatActivity
                         .child(ConnectingServerData.username)
                         .child("books")
                         .getChildren()) {
-                    if ((boolean)postSnapshot.child("own").getValue())
+                    if (!(boolean)postSnapshot.child("own").getValue())
                         books.add(postSnapshot.child("name").getValue().toString());
                     needingBooksAdapter.notifyDataSetChanged();
                 }

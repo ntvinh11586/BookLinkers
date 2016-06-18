@@ -18,6 +18,6 @@
     <string name="title_book_information">Book Information</string>
     <string name="title_activity_your_information_editing">Information Editing</string>
 
-    <string name="non_value">{None}</string>
+    <string name="null_string">{None}</string>
 
 </resources>
