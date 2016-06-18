@@ -1,10 +1,12 @@
 package com.example.vinh.booklinkers;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -136,9 +138,26 @@ public class BooksHavingActivity extends AppCompatActivity
             startActivity(intent);
             return true;
         } else if (id == R.id.action_log_out) {
-            Intent intent = new Intent(BooksHavingActivity.this, LoginActivity.class);
-            finish();
-            startActivity(intent);
+            AlertDialog.Builder mydialog = new AlertDialog.Builder(this);
+            mydialog.setTitle("Logout");
+            mydialog.setMessage("Are you sure to logout?");
+
+            mydialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(BooksHavingActivity.this, LoginActivity.class);
+
+                    finish();
+                    startActivity(intent);
+                }
+            });
+
+            mydialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // do nothing
+                }
+            });
+
+            mydialog.show();
             return true;
         }
 
