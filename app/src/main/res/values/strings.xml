@@ -6,6 +6,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
     <string name="title_activity_owner_direction_maps">Map</string>
     <string name="title_activity_book_adding">Add your Book</string>
     <string name="title_activity_books_having">Your Own Books</string>
@@ -16,4 +17,7 @@
     <string name="title_book_editing">Edit Book</string>
     <string name="title_book_information">Book Information</string>
     <string name="title_activity_your_information_editing">Information Editing</string>
+
+    <string name="non_value">{None}</string>
+
 </resources>

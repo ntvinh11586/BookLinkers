@@ -74,12 +74,12 @@ public class YourInformationActivity extends AppCompatActivity
                         .child("information");
 
                 tvName.setText(snapshot.child("name").getValue().toString());
-                tvUsername.setText("Username            " + snapshot.child("username").getValue().toString());
-                tvEmail.setText("Email          " + snapshot.child("email").getValue().toString());
+                tvUsername.setText(snapshot.child("username").getValue().toString());
+                tvEmail.setText(snapshot.child("email").getValue().toString());
 
-                tvBirthday.setText("Birthday            " + snapshot.child("birthday").getValue().toString());
-                tvPhone.setText("Phone          " + snapshot.child("phone").getValue().toString());
-                tvAddress.setText("Address          " + snapshot.child("address").getValue().toString());
+                tvBirthday.setText(snapshot.child("birthday").getValue().toString());
+                tvPhone.setText(snapshot.child("phone").getValue().toString());
+                tvAddress.setText(snapshot.child("address").getValue().toString());
             }
 
             @Override

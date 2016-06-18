@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_information) {
             Intent intent = new Intent(MainActivity.this, YourInformationActivity.class);
-            finish();
+            //finish();
             startActivity(intent);
         } else if (id == R.id.nav_search_book) {
             Intent intent = new Intent(MainActivity.this, BooksSearchingActivity.class);
