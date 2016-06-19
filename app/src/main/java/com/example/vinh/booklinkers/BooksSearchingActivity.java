@@ -15,13 +15,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class BooksSearchingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private Button btnSearch;
     private ListView lvResult;
+    private String temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +48,13 @@ public class BooksSearchingActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 String[] result = getSearchResult();
+
                 ArrayAdapter<String> resultAdapter =
                         new ArrayAdapter<String>(
                                 BooksSearchingActivity.this,
-                                R.layout.list_search_item, result);
+                                R.layout.list_search_item,
+                                result);
+
                 lvResult.setAdapter(resultAdapter);
             }
         });
@@ -60,16 +64,20 @@ public class BooksSearchingActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(
                         BooksSearchingActivity.this,
-                        BooksExchangeDetailActivity.class);
+                        OwnerInformationActivity.class);
+
+                temp = lvResult.getItemAtPosition(position).toString();
+
+                intent.putExtra(EXTRA_OWNER_USERNAME, temp);
+
                 startActivity(intent);
             }
         });
 
-
     }
 
     private String[] getSearchResult() {
-        String[] res = {"Nguyen The Vinh - ntvinh11586"};
+        String[] res = {"vinh456"};
         return res;
     }
 

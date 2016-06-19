@@ -6,13 +6,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.vinh.GlobalObject.ConnectingServerData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class OwnerInformationActivity extends AppCompatActivity {
 
+    private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private Button btnCall;
     private Button btnSendMessage;
     private String phoneNumber;
     private String email;
+    private String getResult;
+    private TextView tvName;
+    private TextView tvUsername;
+    private TextView tvEmail;
+    private TextView tvBirthday;
+    private TextView tvPhone;
+    private TextView tvAddress;
+    private Firebase myFirebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +38,47 @@ public class OwnerInformationActivity extends AppCompatActivity {
 
         btnCall = (Button)findViewById(R.id.button_call);
         btnSendMessage = (Button)findViewById(R.id.button_send_message);
+
+        getResult = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
+
+        Toast.makeText(getApplicationContext(), getResult, Toast.LENGTH_SHORT).show();
+
+        tvName = (TextView)findViewById(R.id.text_name);
+        tvUsername = (TextView)findViewById(R.id.text_username);
+        tvEmail = (TextView) findViewById(R.id.text_email);
+        tvBirthday = (TextView)findViewById(R.id.text_birthday);
+        tvPhone = (TextView)findViewById(R.id.text_phone);
+        tvAddress = (TextView)findViewById(R.id.text_address);
+
+        Firebase.setAndroidContext(OwnerInformationActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot snapshot = dataSnapshot
+                        .child(getResult)
+                        .child("information");
+
+                tvName.setText(snapshot.child("name").getValue().toString());
+                tvUsername.setText(snapshot.child("username").getValue().toString());
+                tvEmail.setText(snapshot.child("email").getValue().toString());
+
+                tvBirthday.setText(snapshot.child("birthday").getValue().toString());
+                tvPhone.setText(snapshot.child("phone").getValue().toString());
+                tvAddress.setText(snapshot.child("address").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+
+
+
 
         phoneNumber = "+84937761608";
         email = "ntvinh.11586@gmail.com";

@@ -8,11 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.vinh.Testers.LocalTesters;
 
 public class BooksExchangeDetailActivity extends AppCompatActivity {
 
+//    private static final java.lang.String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAMEE";
     private Button btnMapDirection;
     private Button btnViewInformation;
     private ListView lvHavingBooks;
@@ -20,6 +22,7 @@ public class BooksExchangeDetailActivity extends AppCompatActivity {
 
     static final String EXTRA_YOUR_LOCATION = "com.example.vinh.Booklinkers.EXTRA_YOUR_LOCATION";
     static final String EXTRA_OWNER_LOCATION = "com.example.vinh.Booklinkers.EXTRA_OWNER_LOCATION";
+    private String getResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
