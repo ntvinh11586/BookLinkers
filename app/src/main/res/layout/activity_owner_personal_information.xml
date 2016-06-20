@@ -61,7 +61,14 @@
                 android:text="Send Message"
                 android:id="@+id/button_send_message"
                 android:layout_weight="1" />
+
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Direction (google map)"
+            android:id="@+id/button_view_direction" />
 
     </LinearLayout>
 

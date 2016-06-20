@@ -29,6 +29,9 @@ import java.util.List;
 public class OwnerDirectionMapsActivity extends FragmentActivity
         implements OnMapReadyCallback, DirectionFinderListener {
 
+    private static final String EXTRA_YOUR_LOCATION = "EXTRA_YOUR_LOCATION";
+    private static final String EXTRA_OWNER_LOCATION = "EXTRA_OWNER_LOCATION";
+
     private GoogleMap mMap;
     private List<Marker> originMarkers = new ArrayList<>();
     private List<Marker> destinationMarkers = new ArrayList<>();
@@ -37,8 +40,8 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
     private String origin;
     private String destination;
 
-    static final String EXTRA_YOUR_LOCATION = "com.example.vinh.Booklinkers.EXTRA_YOUR_LOCATION";
-    static final String EXTRA_OWNER_LOCATION = "com.example.vinh.Booklinkers.EXTRA_OWNER_LOCATION";
+//    static final String EXTRA_YOUR_LOCATION = "com.example.vinh.Booklinkers.EXTRA_YOUR_LOCATION";
+//    static final String EXTRA_OWNER_LOCATION = "com.example.vinh.Booklinkers.EXTRA_OWNER_LOCATION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class OwnerDirectionMapsActivity extends FragmentActivity
 
         origin = getIntent().getExtras().getString(EXTRA_YOUR_LOCATION);
         destination = getIntent().getExtras().getString(EXTRA_OWNER_LOCATION);
+
+//        origin = getIntent().getExtras().getString(EXTRA_YOUR_LOCATION);
+//        destination = getIntent().getExtras().getString(EXTRA_OWNER_LOCATION);
 
         findDirection(origin, destination);
     }

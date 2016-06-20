@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_notifcation"
+            android:icon="@drawable/ic_nav_notification"
+            android:title="Notification" />
+        <item
             android:id="@+id/nav_have_book"
             android:icon="@drawable/ic_nav_having_books"
             android:title="Your Own Books" />
@@ -27,8 +31,8 @@
             android:icon="@drawable/ic_nav_help"
             android:title="Help" />
         <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/ic_nav_about"
-            android:title="About" />
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_nav_log_out"
+            android:title="Exit" />
     </group>
 </menu>

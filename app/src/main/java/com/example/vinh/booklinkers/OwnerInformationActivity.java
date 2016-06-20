@@ -18,6 +18,9 @@ import com.firebase.client.ValueEventListener;
 public class OwnerInformationActivity extends AppCompatActivity {
 
     private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
+    private static final String EXTRA_YOUR_LOCATION = "EXTRA_YOUR_LOCATION";
+    private static final String EXTRA_OWNER_LOCATION = "EXTRA_OWNER_LOCATION";
+
     private Button btnCall;
     private Button btnSendMessage;
     private String phoneNumber;
@@ -30,6 +33,7 @@ public class OwnerInformationActivity extends AppCompatActivity {
     private TextView tvPhone;
     private TextView tvAddress;
     private Firebase myFirebaseRef;
+    private Button btnDirection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class OwnerInformationActivity extends AppCompatActivity {
 
         btnCall = (Button)findViewById(R.id.button_call);
         btnSendMessage = (Button)findViewById(R.id.button_send_message);
+        btnDirection = (Button)findViewById(R.id.button_view_direction);
 
         getResult = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
 
@@ -105,5 +110,21 @@ public class OwnerInformationActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OwnerInformationActivity.this,
+                        OwnerDirectionMapsActivity.class);
+
+                intent.putExtra(EXTRA_YOUR_LOCATION, "Dai hoc Bach Khoa");
+                intent.putExtra(EXTRA_OWNER_LOCATION, tvAddress.getText().toString());
+
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 }
