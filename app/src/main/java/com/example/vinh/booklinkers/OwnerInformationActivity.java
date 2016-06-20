@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -32,7 +33,7 @@ public class OwnerInformationActivity
     private Button btnSendMessage;
     private String phoneNumber;
     private String email;
-    private String getResult;
+    private String ownerUsername;
     private TextView tvName;
     private TextView tvUsername;
     private TextView tvEmail;
@@ -47,12 +48,93 @@ public class OwnerInformationActivity
     private ListView lvOnwerNeededBooks;
     private ArrayList<String> neededBooks;
     private ArrayAdapter<String> ownerNeededBooksAdapter;
+    private ArrayList<String> listMyBooks;
+    private ArrayList<String> listOwnerHavingBooks;
+    private ArrayList<String> listOwnerNeededBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getResult = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
+        Firebase.setAndroidContext(OwnerInformationActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
+        ownerUsername = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
+
+
+        listMyBooks = new ArrayList<String>();
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("books")
+                        .getChildren()) {
+                    listMyBooks.add(postSnapshot.child("name").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+        listOwnerHavingBooks = new ArrayList<String>();
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ownerUsername)
+                        .child("books")
+                        .getChildren()) {
+
+                    if (false && true)
+                        break;
+
+                    for (int i = 0; i < listMyBooks.size(); i++)
+                        if (listMyBooks.get(i).equals(postSnapshot.child("name").getValue().toString())
+                                && (boolean)postSnapshot.child("own").getValue())
+                            listOwnerHavingBooks.add(postSnapshot.child("name").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        listOwnerNeededBooks = new ArrayList<String>();
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ownerUsername)
+                        .child("books")
+                        .getChildren()) {
+
+                    if (false && true)
+                        break;
+
+                    for (int i = 0; i < listMyBooks.size(); i++)
+                        if (listMyBooks.get(i).equals(postSnapshot.child("name").getValue().toString())
+                                && !(boolean)postSnapshot.child("own").getValue())
+                            listOwnerNeededBooks.add(postSnapshot.child("name").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
 
 
 //        setContentView(R.layout.activity_owner_personal_information);
@@ -96,7 +178,7 @@ public class OwnerInformationActivity
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         DataSnapshot snapshot = dataSnapshot
-                                .child(getResult)
+                                .child(ownerUsername)
                                 .child("information");
 
                         tvName.setText(snapshot.child("name").getValue().toString());
@@ -166,15 +248,10 @@ public class OwnerInformationActivity
 
                 lvOnwerBooks = (ListView)findViewById(R.id.list_owner_books);
 
-                books = new ArrayList<>();
-                books.add("vinh");
-                books.add("khanh");
-                books.add("innll");
+                books = listOwnerHavingBooks;
+
                 ownerBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
                 lvOnwerBooks.setAdapter(ownerBooksAdapter);
-
-
-
 
                 break;
 
@@ -183,10 +260,7 @@ public class OwnerInformationActivity
 
                 lvOnwerNeededBooks = (ListView)findViewById(R.id.list_owner_needed_books);
 
-                neededBooks = new ArrayList<>();
-                neededBooks.add("hihi");
-                neededBooks.add("hehe");
-                neededBooks.add("hoho");
+                neededBooks = listOwnerNeededBooks;
                 ownerNeededBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, neededBooks);
                 lvOnwerNeededBooks.setAdapter(ownerNeededBooksAdapter);
 

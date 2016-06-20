@@ -16,13 +16,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.vinh.GlobalObject.ConnectingServerData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class BooksSearchingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private Button btnSearch;
     private ListView lvResult;
-    private String temp;
+    private String ownerSelection;
+    private ArrayList<String> books;
+    private Firebase myFirebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +51,42 @@ public class BooksSearchingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        books = new ArrayList<>();
+
+        Firebase.setAndroidContext(BooksSearchingActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("books")
+                        .getChildren()) {
+//                    if ((boolean)postSnapshot.child("own").getValue())
+//                        books.add(postSnapshot.child("name").getValue().toString());
+//                    havingBooksAdapter.notifyDataSetChanged();
+                    books.add(postSnapshot.child("name").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+
+
         lvResult = (ListView) findViewById(R.id.listview_result);
         btnSearch = (Button)findViewById(R.id.button_search);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] result = getSearchResult();
+                ArrayList<String> result = getSearchResult();
 
                 ArrayAdapter<String> resultAdapter =
                         new ArrayAdapter<String>(
@@ -66,19 +105,73 @@ public class BooksSearchingActivity extends AppCompatActivity
                         BooksSearchingActivity.this,
                         OwnerInformationActivity.class);
 
-                temp = lvResult.getItemAtPosition(position).toString();
+                ownerSelection = lvResult.getItemAtPosition(position).toString();
 
-                intent.putExtra(EXTRA_OWNER_USERNAME, temp);
+                intent.putExtra(EXTRA_OWNER_USERNAME, ownerSelection);
 
                 startActivity(intent);
             }
         });
 
+
+
+
+
+
+
+
+
     }
 
-    private String[] getSearchResult() {
-        String[] res = {"vinh456"};
-        return res;
+    ArrayList<String> result;
+
+    private ArrayList<String> getSearchResult() {
+//        String[] res = {"vinh456"};
+
+        result = new ArrayList<>();
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .getChildren()) {
+
+                    String aaa = postSnapshot.toString();
+
+                    boolean findData = false;
+
+                    if (!postSnapshot.getKey().toString().equals(ConnectingServerData.username))
+                        for (DataSnapshot postNameSnapshot: postSnapshot
+                                .child("books")
+                                .getChildren()) {
+
+
+                            String tmp = postNameSnapshot.child("name").getValue().toString();
+
+                            if (!findData) {
+                                for (int i = 0; i < books.size(); i++)
+                                    if (tmp.equals(books.get(i))) {
+                                        result.add(postSnapshot.getKey().toString());
+                                        findData = true;
+                                        break;
+                                    }
+                            }
+
+//                            if (findData) break;
+
+                            }
+
+                }
+            }
+
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        return result;
     }
 
     @Override
