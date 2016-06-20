@@ -8,15 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class OwnerInformationActivity
         extends AppCompatActivity
@@ -39,6 +41,12 @@ public class OwnerInformationActivity
     private TextView tvAddress;
     private Firebase myFirebaseRef;
     private Button btnDirection;
+    private ListView lvOnwerBooks;
+    private ArrayList<String> books;
+    private ArrayAdapter<String> ownerBooksAdapter;
+    private ListView lvOnwerNeededBooks;
+    private ArrayList<String> neededBooks;
+    private ArrayAdapter<String> ownerNeededBooksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +62,8 @@ public class OwnerInformationActivity
 
         // Three tab to display in actionbar
         ab.addTab(ab.newTab().setText("Information").setTabListener(this));
-        ab.addTab(ab.newTab().setText("Books").setTabListener(this));
-
+        ab.addTab(ab.newTab().setText("Having Books").setTabListener(this));
+        ab.addTab(ab.newTab().setText("Needed Books").setTabListener(this));
     }
 
 
@@ -147,8 +155,41 @@ public class OwnerInformationActivity
                 });
 
                 break;
+
+
+
+
+
             case 1:
-                setContentView(R.layout.activity_owner_personal_books);
+                setContentView(R.layout.activity_owner_having_books);
+
+
+                lvOnwerBooks = (ListView)findViewById(R.id.list_owner_books);
+
+                books = new ArrayList<>();
+                books.add("vinh");
+                books.add("khanh");
+                books.add("innll");
+                ownerBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
+                lvOnwerBooks.setAdapter(ownerBooksAdapter);
+
+
+
+
+                break;
+
+            case 2:
+                setContentView(R.layout.activity_owner_needed_books);
+
+                lvOnwerNeededBooks = (ListView)findViewById(R.id.list_owner_needed_books);
+
+                neededBooks = new ArrayList<>();
+                neededBooks.add("hihi");
+                neededBooks.add("hehe");
+                neededBooks.add("hoho");
+                ownerNeededBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, neededBooks);
+                lvOnwerNeededBooks.setAdapter(ownerNeededBooksAdapter);
+
                 break;
         }
     }
