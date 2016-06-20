@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -31,16 +32,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ListView lvHavingBooks;
-    ListView lvNeedingBooks;
-    TextView tvNavNameTitle;
-    private TextView tvNavEmailTitle;
-    private ImageView imgAvatar;
+    private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private Firebase myFirebaseRef;
-    private ArrayList<String> booksHaving;
-    private ArrayList<String> booksNeeding;
-    ArrayAdapter<String> needingBooksAdapter;
-    ArrayAdapter<String> havingBooksAdapter;
+    private ListView lvHavingBooks;
+    private ArrayList<String> books;
+    private ArrayAdapter<String> havingBooksAdapter;
+    private String strLvItem;
+    private String ownerSelection;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
@@ -73,70 +71,51 @@ public class MainActivity extends AppCompatActivity
         Firebase.setAndroidContext(MainActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
+        // ListView
+        lvHavingBooks = (ListView)findViewById(R.id.listview_notification);
 
-        lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
-        lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
+        books = new ArrayList<>();
+        havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
+        lvHavingBooks.setAdapter(havingBooksAdapter);
 
-        imgAvatar = (ImageView)header.findViewById(R.id.image_nav_avatar);
-        tvNavNameTitle = (TextView)header.findViewById(R.id.textview_nav_name);
-        tvNavEmailTitle = (TextView)header.findViewById(R.id.textview_nav_email);
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot
+                        .child(ConnectingServerData.username)
+                        .child("notification")
+                        .getChildren()) {
+                    if (postSnapshot.child("message").getValue() != null)
+                        books.add(postSnapshot.child("message").getValue().toString());
+                    havingBooksAdapter.notifyDataSetChanged();
+                }
+            }
 
-        imgAvatar.setImageResource(R.drawable.img_your_avatar);
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
 
-//        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                tvNavNameTitle.setText(dataSnapshot
-//                        .child(ConnectingServerData.username)
-//                        .child("information")
-//                        .child("name")
-//                        .getValue().toString());
-//                tvNavEmailTitle.setText(dataSnapshot
-//                        .child(ConnectingServerData.username)
-//                        .child("information")
-//                        .child("email")
-//                        .getValue().toString());
-//            }
-//
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
-//
-//
-//        booksHaving = new ArrayList<>();
-//        booksNeeding = new ArrayList<>();
-//
-//        havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksHaving);
-//        needingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, booksNeeding);
-//
-//        lvHavingBooks.setAdapter(havingBooksAdapter);
-//        lvNeedingBooks.setAdapter(needingBooksAdapter);
-//
-//        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot postSnapshot: dataSnapshot
-//                        .child(ConnectingServerData.username)
-//                        .child("books")
-//                        .getChildren()) {
-//                    if (!(boolean)postSnapshot.child("own").getValue())
-//                        booksNeeding.add(postSnapshot.child("name").getValue().toString());
-//                    needingBooksAdapter.notifyDataSetChanged();
-//
-//                    if ((boolean)postSnapshot.child("own").getValue())
-//                        booksHaving.add(postSnapshot.child("name").getValue().toString());
-//                    havingBooksAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
+            }
+        });
 
+        lvHavingBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        OwnerInformationActivity.class);
+                
+                ownerSelection = lvHavingBooks.getItemAtPosition(position).toString();
+
+                String[] tmp = ownerSelection.split(" ");
+
+                intent.putExtra(EXTRA_OWNER_USERNAME, tmp[0]);
+
+                startActivity(intent);
+
+            }
+        });
+        
+        
     }
 
     @Override

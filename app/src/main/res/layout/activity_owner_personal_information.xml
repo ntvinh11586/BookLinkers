@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Nguyen The Vinh"
+                    android:text="@string/null_string"
                     android:id="@+id/text_name"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
@@ -60,16 +60,21 @@
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Call"
-                        android:id="@+id/button_call"
+                        android:text="Notify"
+                        android:id="@+id/button_notify"
                         android:layout_weight="1" />
 
                     <Button
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Call"
+                        android:id="@+id/button_call" />
+
+                    <Button
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Send Message"
-                        android:id="@+id/button_send_message"
-                        android:layout_weight="1" />
+                        android:id="@+id/button_send_message" />
 
                 </LinearLayout>
 

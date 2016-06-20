@@ -56,6 +56,7 @@ public class OwnerInformationActivity
     private ArrayList<String> listOwnerHavingBooks;
     private ArrayList<String> listOwnerNeededBooks;
     private String strLvItem;
+    private Button btnNotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,6 +242,23 @@ public class OwnerInformationActivity
                     }
                 });
 
+                btnNotify = (Button)findViewById(R.id.button_notify);
+                btnNotify.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myFirebaseRef
+                                .child(ownerUsername)
+                                .child("notification")
+                                .push()
+                                .child("message")
+                                .setValue(ConnectingServerData.username +
+                                        " wants to share books with you!");
+
+                        int a;
+                        a = 1;
+                    }
+                });
+
                 break;
 
 
@@ -296,6 +314,8 @@ public class OwnerInformationActivity
 
                     }
                 });
+
+
 
 
 
