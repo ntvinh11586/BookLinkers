@@ -47,10 +47,6 @@ public class BookInformationActivity extends AppCompatActivity {
         Firebase.setAndroidContext(BookInformationActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
-        // I don't know why in this case, I can't set the support actionbar
-        //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(myToolbar);
-
         tvBookName = (TextView)findViewById(R.id.text_book_name);
         tvBookTitle = (TextView)findViewById(R.id.text_book_title);
         tvBookAuthor = (TextView)findViewById(R.id.text_book_author);
@@ -59,13 +55,11 @@ public class BookInformationActivity extends AppCompatActivity {
         gt1 = getIntent().getExtras().getString(EXTRA_USERNAME);
         gt2 = getIntent().getExtras().getString(EXTRA_BOOK_NAME);
 
-//        Toast.makeText(getApplicationContext(), gt1 + " " + gt2, Toast.LENGTH_SHORT).show();
-
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshot = dataSnapshot
-                        .child(ConnectingServerData.username)
+                        .child(gt1)
                         .child("books")
                         .child(gt2);
 

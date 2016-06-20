@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="The Lord of The Ring"
+                android:text="@string/null_string"
                 android:id="@+id/text_book_title"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
@@ -103,7 +103,7 @@
                         android:layout_width="197dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="The Lord of The Ringn"
+                        android:text="@string/null_string"
                         android:id="@+id/text_book_name"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp" />
@@ -120,7 +120,7 @@
                         android:layout_width="225dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="J.R.R. Tolkien"
+                        android:text="@string/null_string"
                         android:id="@+id/text_book_author"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp" />
@@ -151,7 +151,7 @@
                     android:inputType="textMultiLine"
                     android:ems="10"
                     android:id="@+id/text_book_description"
-                    android:text="shfkj shdfkjl  sdfhkjld  sdhfk  lsdjfh  skljdfhsdl fsk dfsd f sdf sd fsd"/>
+                    android:text="@string/null_string"/>
 
             </LinearLayout>
 

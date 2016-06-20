@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
@@ -33,6 +34,7 @@ public class BooksSearchingActivity extends AppCompatActivity
     private String ownerSelection;
     private ArrayList<String> books;
     private Firebase myFirebaseRef;
+    private ArrayList<String> searchResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,16 +85,21 @@ public class BooksSearchingActivity extends AppCompatActivity
         lvResult = (ListView) findViewById(R.id.listview_result);
         btnSearch = (Button)findViewById(R.id.button_search);
 
+
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> result = getSearchResult();
+                searchResult = getSearchResult();
+
+                if (searchResult == null)
+                    Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_SHORT).show();
 
                 ArrayAdapter<String> resultAdapter =
                         new ArrayAdapter<String>(
                                 BooksSearchingActivity.this,
                                 R.layout.list_search_item,
-                                result);
+                                searchResult);
 
                 lvResult.setAdapter(resultAdapter);
             }

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,6 +29,9 @@ public class OwnerInformationActivity
     private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private static final String EXTRA_YOUR_LOCATION = "EXTRA_YOUR_LOCATION";
     private static final String EXTRA_OWNER_LOCATION = "EXTRA_OWNER_LOCATION";
+    private static final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
+    private static final String EXTRA_USERNAME = "EXTRA_USERNAME";
+    private static final int EXTRA_REQUEST_CODE = 999;
 
     private Button btnCall;
     private Button btnSendMessage;
@@ -51,6 +55,7 @@ public class OwnerInformationActivity
     private ArrayList<String> listMyBooks;
     private ArrayList<String> listOwnerHavingBooks;
     private ArrayList<String> listOwnerNeededBooks;
+    private String strLvItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,6 +258,47 @@ public class OwnerInformationActivity
                 ownerBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, books);
                 lvOnwerBooks.setAdapter(ownerBooksAdapter);
 
+                lvOnwerBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        strLvItem = lvOnwerBooks.getItemAtPosition(position).toString();
+                        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot postSnapshot: dataSnapshot
+                                        .child(ownerUsername)
+                                        .child("books")
+                                        .getChildren()) {
+                                    if (postSnapshot.child("name")
+                                            .getValue()
+                                            .toString()
+                                            .equals(strLvItem)) {
+                                        Intent intent = new Intent(OwnerInformationActivity.this,
+                                                BookInformationActivity.class);
+
+                                        intent.putExtra(EXTRA_USERNAME, ownerUsername);
+
+                                        intent.putExtra(EXTRA_BOOK_NAME,
+                                                postSnapshot.getKey().toString());
+
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
+
+                    }
+                });
+
+
+
                 break;
 
             case 2:
@@ -263,6 +309,45 @@ public class OwnerInformationActivity
                 neededBooks = listOwnerNeededBooks;
                 ownerNeededBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_book_item, neededBooks);
                 lvOnwerNeededBooks.setAdapter(ownerNeededBooksAdapter);
+
+                lvOnwerNeededBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        strLvItem = lvOnwerNeededBooks.getItemAtPosition(position).toString();
+                        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot postSnapshot: dataSnapshot
+                                        .child(ownerUsername)
+                                        .child("books")
+                                        .getChildren()) {
+                                    if (postSnapshot.child("name")
+                                            .getValue()
+                                            .toString()
+                                            .equals(strLvItem)) {
+                                        Intent intent = new Intent(OwnerInformationActivity.this,
+                                                BookInformationActivity.class);
+
+                                        intent.putExtra(EXTRA_USERNAME, ownerUsername);
+
+                                        intent.putExtra(EXTRA_BOOK_NAME,
+                                                postSnapshot.getKey().toString());
+
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
+
+                    }
+                });
 
                 break;
         }
