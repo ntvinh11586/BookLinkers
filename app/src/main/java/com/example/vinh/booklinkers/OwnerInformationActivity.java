@@ -177,6 +177,9 @@ public class OwnerInformationActivity
                 tvPhone = (TextView)findViewById(R.id.text_phone);
                 tvAddress = (TextView)findViewById(R.id.text_address);
 
+                phoneNumber = "+84937761608";
+                email = "tommy12@gmail.com";
+
                 Firebase.setAndroidContext(OwnerInformationActivity.this);
                 myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
@@ -201,9 +204,6 @@ public class OwnerInformationActivity
 
                     }
                 });
-
-                phoneNumber = "+84937761608";
-                email = "ntvinh.11586@gmail.com";
 
                 btnCall.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -261,10 +261,7 @@ public class OwnerInformationActivity
 
                 break;
 
-
-
-
-
+            // having books
             case 1:
                 setContentView(R.layout.activity_owner_having_books);
 
@@ -321,6 +318,8 @@ public class OwnerInformationActivity
 
                 break;
 
+
+            // needed books
             case 2:
                 setContentView(R.layout.activity_owner_needed_books);
 
