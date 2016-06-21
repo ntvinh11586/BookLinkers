@@ -185,11 +185,6 @@ public class BooksHavingActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
             return true;
-        } else if (id == R.id.action_home) {
-            Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
-            finish();
-            startActivity(intent);
-            return true;
         } else if (id == R.id.action_log_out) {
             AlertDialog.Builder mydialog = new AlertDialog.Builder(this);
             mydialog.setTitle("Logout");
@@ -223,12 +218,31 @@ public class BooksHavingActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+//        if (id == R.id.nav_notifcation) {
+//            Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
+////            finish();
+//            startActivity(intent);
+//        } else if (id == R.id.nav_have_book) {
+//
+//        }
+
         if (id == R.id.nav_notifcation) {
             Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
-//            finish();
             startActivity(intent);
         } else if (id == R.id.nav_have_book) {
 
+        } else if (id == R.id.nav_need_book) {
+            Intent intent = new Intent(BooksHavingActivity.this, BooksNeedingActivity.class);
+            //finish();
+            startActivity(intent);
+        } else if (id == R.id.nav_information) {
+            Intent intent = new Intent(BooksHavingActivity.this, YourInformationActivity.class);
+            //finish();
+            startActivity(intent);
+        } else if (id == R.id.nav_search_book) {
+            Intent intent = new Intent(BooksHavingActivity.this, BooksSearchingActivity.class);
+            //finish();
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

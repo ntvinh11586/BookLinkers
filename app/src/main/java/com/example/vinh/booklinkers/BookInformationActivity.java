@@ -138,17 +138,9 @@ public class BookInformationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
-            // handle the up button on Action Bar
-            case R.id.action_home:
-                return true;
 
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-                return true;
-
-            case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
                 return true;
 
             default:
