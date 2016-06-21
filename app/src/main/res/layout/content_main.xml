@@ -7,7 +7,9 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.vinh.booklinkers.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:background="@color/colorBackground"
+    android:padding="@dimen/fab_margin" >
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,7 +20,9 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listview_notification" />
+            android:id="@+id/listview_notification"
+            android:drawSelectorOnTop="true"
+            android:scrollbars="none" />
     </LinearLayout>
 
 </LinearLayout>

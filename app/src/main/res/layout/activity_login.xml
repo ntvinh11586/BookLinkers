@@ -4,62 +4,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity" >
+    tools:context=".LoginActivity"
+    android:background="@color/colorBackground"
+    android:gravity="center">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp">
+        android:gravity="center"
+        android:layout_margin="@dimen/fab_margin"
+        android:padding="@dimen/fab_margin">
 
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_username"
-            android:hint="Username" />
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/fab_margin" >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_username"
+                android:hint="Username" />
 
 
-        <EditText
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_password"
+                android:inputType="textPassword"
+                android:hint="Password" />
+
+            <CheckBox
+                android:id="@+id/check_save_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextPassword"
+                android:text="Remember Password"
+                android:checked="false" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_password"
-            android:inputType="textPassword"
-            android:hint="Password" />
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/fab_margin">
 
-        <CheckBox
-            android:id="@+id/check_save_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextPassword"
-            android:text="Remember Password"
-            android:checked="false" />
+            <Button
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="Log in"
+                android:id="@+id/button_login" />
 
-    </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:id="@+id/button_create_account" />
+        </LinearLayout>
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:text="Log in"
-            android:id="@+id/button_login" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:id="@+id/button_create_account" />
     </LinearLayout>
 
 </LinearLayout>

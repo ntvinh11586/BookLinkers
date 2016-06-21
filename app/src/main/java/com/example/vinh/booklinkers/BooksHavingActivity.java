@@ -223,7 +223,11 @@ public class BooksHavingActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_have_book) {
+        if (id == R.id.nav_notifcation) {
+            Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
+//            finish();
+            startActivity(intent);
+        } else if (id == R.id.nav_have_book) {
 
         }
 

@@ -4,59 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AccountCreatingActivity">
+    tools:context=".AccountCreatingActivity"
+    android:gravity="center"
+    android:padding="@dimen/fab_margin"
+    android:background="@color/colorBackground">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_username"
-            android:hint="Your username" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_email"
-            android:hint="Your email" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_password"
-            android:inputType="textPassword"
-            android:hint="Your password" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_password_again"
-            android:inputType="textPassword"
-            android:hint="Your password again" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:background="@android:color/white"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp">
+        android:gravity="center">
 
-        <Button
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:id="@+id/button_create_account"/>
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/fab_margin">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_username"
+                android:hint="Your username" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_email"
+                android:hint="Your email" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_password"
+                android:inputType="textPassword"
+                android:hint="Your password" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_password_again"
+                android:inputType="textPassword"
+                android:hint="Your password again" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create Account"
+                    android:id="@+id/button_create_account"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

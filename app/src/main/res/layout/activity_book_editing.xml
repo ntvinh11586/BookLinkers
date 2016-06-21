@@ -4,54 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookEditingActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:padding="@dimen/fab_margin">
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_book_name"
-            android:hint="Book name" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_book_author"
-            android:hint="Book author" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_book_description"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:hint="Book description" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:background="@android:color/white"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp">
+        android:gravity="center">
 
-        <Button
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apply"
-            android:id="@+id/button_apply_change"/>
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/fab_margin">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_book_name"
+                android:hint="Book name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_book_author"
+                android:hint="Book author" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_book_description"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:hint="Book description" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apply"
+                android:id="@+id/button_apply_change"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#565E7F</color>
+    <color name="colorPrimaryDark">#2B2F40</color>
     <color name="colorAccent">#8694A5</color>
     <color name="colorMapDirection">#00B3FD</color>
     <color name="colorLoginPrimary">#303E48</color>
     <color name="colorText">#FFFFFF</color>
     <color name="colorHint">#8694A5</color>
     <color name="colorButton">#192023</color>
+
+    <color name="colorBackground">#ADBCFF</color>
+
 </resources>
