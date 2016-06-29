@@ -262,14 +262,36 @@ public class OwnerInformationActivity
                 btnDirection.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(OwnerInformationActivity.this,
-                                OwnerDirectionMapsActivity.class);
+                        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String yourLocation;
+                                String ownerLocation;
 
-                        intent.putExtra(EXTRA_YOUR_LOCATION, "Dai hoc Bach Khoa");
-                        intent.putExtra(EXTRA_OWNER_LOCATION, "Dai hoc khoa hoc tu nhien");
+                                yourLocation = dataSnapshot.child(yourUsername)
+                                        .child("information")
+                                        .child("address")
+                                        .getValue().toString();
 
-                        startActivity(intent);
+                                ownerLocation = dataSnapshot.child(ownerUsername)
+                                        .child("information")
+                                        .child("address")
+                                        .getValue().toString();
 
+                                Intent intent = new Intent(OwnerInformationActivity.this,
+                                        OwnerDirectionMapsActivity.class);
+
+                                intent.putExtra(EXTRA_YOUR_LOCATION, yourLocation);
+                                intent.putExtra(EXTRA_OWNER_LOCATION, ownerLocation);
+
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
                     }
                 });
 
