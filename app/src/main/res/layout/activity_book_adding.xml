@@ -8,53 +8,73 @@
     android:padding="@dimen/fab_margin"
     android:background="@color/colorBackground">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView2" >
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/fab_margin">
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <EditText
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_name"
-                android:hint="Book name" />
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/fab_margin">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/edit_author"
-                android:hint="Author" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_name"
+                    android:hint="Book name" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/edit_description"
-                android:inputType="textMultiLine"
-                android:hint="Description"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_author"
+                    android:hint="Author" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Have you got this book?"
-                android:id="@+id/check_owner_book"
-                android:checked="true" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_description"
+                    android:inputType="textMultiLine"
+                    android:hint="Description"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Apply"
-                android:id="@+id/button_apply_change"
-                android:layout_gravity="center_horizontal" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book avatar"
+                    android:id="@+id/button_book_avatar" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/image_book_avatar"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center_horizontal" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Have you got this book?"
+                    android:id="@+id/check_owner_book"
+                    android:checked="true" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apply"
+                    android:id="@+id/button_apply_change"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -71,15 +71,17 @@
                     android:id="@+id/button_change_avatar" />
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/image_current_avatar" />
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/image_current_avatar"
+                    android:layout_gravity="center_horizontal" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Apply"
-                    android:id="@+id/button_apply"/>
+                    android:id="@+id/button_apply"
+                    android:adjustViewBounds="true" />
         </LinearLayout>
 
 

@@ -33,7 +33,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:id="@+id/image_avatar"
                     android:src="@drawable/img_your_avatar"
                     android:paddingBottom="8dp"

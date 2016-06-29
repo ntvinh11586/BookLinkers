@@ -2,16 +2,20 @@ package com.example.vinh.booklinkers;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +41,7 @@ public class BookInformationActivity extends AppCompatActivity {
     private String gt2;
     private TextView tvBookName;
     private Button btnRemoveBooks;
+    private ImageView ivBookAvatar;
 
 
     @Override
@@ -51,6 +56,7 @@ public class BookInformationActivity extends AppCompatActivity {
         tvBookTitle = (TextView)findViewById(R.id.text_book_title);
         tvBookAuthor = (TextView)findViewById(R.id.text_book_author);
         tvBookDescription = (TextView)findViewById(R.id.text_book_description);
+        ivBookAvatar = (ImageView)findViewById(R.id.image_book_avatar);
 
         gt1 = getIntent().getExtras().getString(EXTRA_USERNAME);
         gt2 = getIntent().getExtras().getString(EXTRA_BOOK_NAME);
@@ -68,6 +74,14 @@ public class BookInformationActivity extends AppCompatActivity {
                     tvBookTitle.setText(snapshot.child("name").getValue().toString());
                     tvBookAuthor.setText(snapshot.child("author").getValue().toString());
                     tvBookDescription.setText(snapshot.child("description").getValue().toString());
+
+                    byte[] imageArray = Base64.decode(snapshot
+                                    .child("avatar").getValue().toString(),
+                            Base64.DEFAULT);
+
+                    Bitmap bmp = BitmapFactory.decodeByteArray(imageArray, 0, imageArray.length);
+                    ivBookAvatar.setImageBitmap(bmp);
+
                 }
             }
 
