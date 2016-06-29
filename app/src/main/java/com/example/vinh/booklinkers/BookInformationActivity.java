@@ -42,6 +42,7 @@ public class BookInformationActivity extends AppCompatActivity {
     private TextView tvBookName;
     private Button btnRemoveBooks;
     private ImageView ivBookAvatar;
+    private TextView tvBookStatus;
 
 
     @Override
@@ -57,6 +58,7 @@ public class BookInformationActivity extends AppCompatActivity {
         tvBookAuthor = (TextView)findViewById(R.id.text_book_author);
         tvBookDescription = (TextView)findViewById(R.id.text_book_description);
         ivBookAvatar = (ImageView)findViewById(R.id.image_book_avatar);
+        tvBookStatus = (TextView)findViewById(R.id.text_book_status);
 
         gt1 = getIntent().getExtras().getString(EXTRA_USERNAME);
         gt2 = getIntent().getExtras().getString(EXTRA_BOOK_NAME);
@@ -74,6 +76,13 @@ public class BookInformationActivity extends AppCompatActivity {
                     tvBookTitle.setText(snapshot.child("name").getValue().toString());
                     tvBookAuthor.setText(snapshot.child("author").getValue().toString());
                     tvBookDescription.setText(snapshot.child("description").getValue().toString());
+
+                    boolean isHaving = (boolean)snapshot.child("own").getValue();
+                    if (isHaving) {
+                        tvBookStatus.setText("Having");
+                    } else {
+                        tvBookStatus.setText("Needing");
+                    }
 
                     byte[] imageArray = Base64.decode(snapshot
                                     .child("avatar").getValue().toString(),

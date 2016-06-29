@@ -88,9 +88,26 @@
                     <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:rowCount="2"
+                        android:rowCount="3"
                         android:columnCount="2"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Book Status"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp" />
+
+                        <TextView
+                            android:layout_width="197dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/null_string"
+                            android:id="@+id/text_book_status"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp" />
 
                         <TextView
                             android:layout_width="130dp"
