@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/fab_margin" >
+            android:layout_margin="8dp" >
 
             <EditText
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/fab_margin">
+            android:layout_margin="8dp">
 
             <Button
                 android:layout_width="125dp"
@@ -65,7 +65,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Account"
+                android:text="Sign Up"
                 android:id="@+id/button_create_account" />
         </LinearLayout>
 
