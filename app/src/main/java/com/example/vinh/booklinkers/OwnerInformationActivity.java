@@ -35,15 +35,16 @@ public class OwnerInformationActivity
 
     private Button btnCall;
     private Button btnSendMessage;
-    private String phoneNumber;
-    private String email;
     private String ownerUsername;
+
+    // show information
     private TextView tvName;
     private TextView tvUsername;
     private TextView tvEmail;
     private TextView tvBirthday;
     private TextView tvPhone;
     private TextView tvAddress;
+
     private Firebase myFirebaseRef;
     private Button btnDirection;
     private ListView lvOnwerBooks;
@@ -57,6 +58,7 @@ public class OwnerInformationActivity
     private ArrayList<String> listOwnerNeededBooks;
     private String strLvItem;
     private Button btnNotify;
+    private String yourUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class OwnerInformationActivity
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         ownerUsername = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
-
+        yourUsername = ConnectingServerData.username;
 
         listMyBooks = new ArrayList<String>();
 
@@ -161,6 +163,8 @@ public class OwnerInformationActivity
         //Called when a tab is selected
         int nTabSelected = tab.getPosition();
         switch (nTabSelected) {
+
+            // owner personal information: information tab
             case 0:
                 setContentView(R.layout.activity_owner_personal_information);
 
@@ -168,21 +172,16 @@ public class OwnerInformationActivity
                 btnSendMessage = (Button)findViewById(R.id.button_send_message);
                 btnDirection = (Button)findViewById(R.id.button_view_direction);
 
-//                Toast.makeText(getApplicationContext(), getResult, Toast.LENGTH_SHORT).show();
-
                 tvName = (TextView)findViewById(R.id.text_name);
                 tvUsername = (TextView)findViewById(R.id.text_username);
                 tvEmail = (TextView) findViewById(R.id.text_email);
                 tvBirthday = (TextView)findViewById(R.id.text_birthday);
                 tvPhone = (TextView)findViewById(R.id.text_phone);
                 tvAddress = (TextView)findViewById(R.id.text_address);
-
-                phoneNumber = "+84937761608";
-                email = "tommy12@gmail.com";
-
                 Firebase.setAndroidContext(OwnerInformationActivity.this);
                 myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
+                // load owner information
                 myFirebaseRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -205,29 +204,61 @@ public class OwnerInformationActivity
                     }
                 });
 
+                // call
                 btnCall.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Uri number = Uri.parse("tel:"+phoneNumber);
-                        Intent intent = new Intent(Intent.ACTION_DIAL, number);
-                        startActivity(intent);
+                        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                            public String phoneNumber;
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                phoneNumber = dataSnapshot.child(ownerUsername)
+                                        .child("information")
+                                        .child("phone").getValue().toString();
+                                Uri number = Uri.parse("tel:"+ phoneNumber);
+                                Intent intent = new Intent(Intent.ACTION_DIAL, number);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
                     }
                 });
 
+                // send email message
                 btnSendMessage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_SEND);
-                        intent.setType("message/rfc822");
-                        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                        try {
-                            startActivity(Intent.createChooser(intent, "Send mail..."));
-                        } catch (android.content.ActivityNotFoundException ex) {
+                        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        }
+                                String email = dataSnapshot.child(ownerUsername)
+                                        .child("information")
+                                        .child("email").getValue().toString();
+
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("message/rfc822");
+                                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                                try {
+                                    startActivity(Intent.createChooser(intent, "Send mail..."));
+                                } catch (android.content.ActivityNotFoundException ex) {
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
                     }
                 });
 
+                // view direction
                 btnDirection.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -235,13 +266,14 @@ public class OwnerInformationActivity
                                 OwnerDirectionMapsActivity.class);
 
                         intent.putExtra(EXTRA_YOUR_LOCATION, "Dai hoc Bach Khoa");
-                        intent.putExtra(EXTRA_OWNER_LOCATION, tvAddress.getText().toString());
+                        intent.putExtra(EXTRA_OWNER_LOCATION, "Dai hoc khoa hoc tu nhien");
 
                         startActivity(intent);
 
                     }
                 });
 
+                // notify to the owner user
                 btnNotify = (Button)findViewById(R.id.button_notify);
                 btnNotify.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -260,6 +292,8 @@ public class OwnerInformationActivity
                 });
 
                 break;
+
+            ////////////////////////////////////////////////////////////////////////////////////////
 
             // having books
             case 1:
