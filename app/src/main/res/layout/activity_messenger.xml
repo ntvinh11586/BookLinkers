@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vinh.booklinkers.MessengerActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:layout_weight="1.00">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listview_message"
+            android:scrollbars="none"
+            android:stackFromBottom="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:focusable="true"
+                android:layout_weight="0.98" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton"
+                android:src="@drawable/ic_menu_send"
+                android:background="@android:color/white"
+                android:drawSelectorOnTop="true" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
