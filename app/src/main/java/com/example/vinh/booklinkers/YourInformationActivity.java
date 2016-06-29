@@ -1,6 +1,9 @@
 package com.example.vinh.booklinkers;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -8,10 +11,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +41,7 @@ public class YourInformationActivity extends AppCompatActivity
     private TextView tvAddress;
 
     private Firebase myFirebaseRef;
+    private ImageView ivAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +68,13 @@ public class YourInformationActivity extends AppCompatActivity
         tvBirthday = (TextView)findViewById(R.id.text_birthday);
         tvPhone = (TextView)findViewById(R.id.text_phone);
         tvAddress = (TextView)findViewById(R.id.text_address);
+        ivAvatar = (ImageView)findViewById(R.id.image_avatar);
+
 
         Firebase.setAndroidContext(YourInformationActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
+        // set information profile
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,6 +89,15 @@ public class YourInformationActivity extends AppCompatActivity
                 tvBirthday.setText(snapshot.child("birthday").getValue().toString());
                 tvPhone.setText(snapshot.child("phone").getValue().toString());
                 tvAddress.setText(snapshot.child("address").getValue().toString());
+
+                byte[] imageArray = Base64.decode(dataSnapshot
+                                .child(ConnectingServerData.username)
+                                .child("information")
+                                .child("avatar").getValue().toString(),
+                        Base64.DEFAULT);
+
+                Bitmap bmp = BitmapFactory.decodeByteArray(imageArray, 0, imageArray.length);
+                ivAvatar.setImageBitmap(bmp);
             }
 
             @Override
