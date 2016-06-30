@@ -35,14 +35,14 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText"
+                android:id="@+id/edit_message_content"
                 android:focusable="true"
                 android:layout_weight="0.98" />
 
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/imageButton"
+                android:id="@+id/button_send_message"
                 android:src="@drawable/ic_menu_send"
                 android:background="@android:color/white"
                 android:drawSelectorOnTop="true" />
