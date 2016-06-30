@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity
         Firebase.setAndroidContext(MainActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
-        // set nativation bar value
-
         imgNavAvatar = (ImageView)header.findViewById(R.id.image_nav_avatar);
         tvNavName = (TextView)header.findViewById(R.id.text_nav_name);
         tvNavEmail = (TextView)header.findViewById(R.id.text_nav_email);
@@ -213,7 +211,7 @@ public class MainActivity extends AppCompatActivity
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_search_book) {
-            Intent intent = new Intent(MainActivity.this, BooksSearchingActivity.class);
+            Intent intent = new Intent(MainActivity.this, SearchOwnerActivity.class);
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_log_out) {

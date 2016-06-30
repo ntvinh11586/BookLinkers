@@ -1,11 +1,13 @@
 package com.example.vinh.booklinkers;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
@@ -153,7 +156,7 @@ public class OwnerProfileActivity
         });
 
 
-//        setContentView(R.layout.activity_owner_personal_profile);
+//        setContentView(R.layout.activity_owner_profile);
 
         ActionBar ab = getSupportActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -175,7 +178,7 @@ public class OwnerProfileActivity
 
             // owner personal information: information tab
             case 0:
-                setContentView(R.layout.activity_owner_personal_profile);
+                setContentView(R.layout.activity_owner_profile);
 
                 Firebase.setAndroidContext(OwnerProfileActivity.this);
                 myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
@@ -312,16 +315,32 @@ public class OwnerProfileActivity
                 btnNotify.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        myFirebaseRef
-                                .child(ownerUsername)
-                                .child("notification")
-                                .push()
-                                .child("message")
-                                .setValue(ConnectingServerData.username +
-                                        " wants to share books with you!");
+                        AlertDialog.Builder mydialog = new AlertDialog.Builder(OwnerProfileActivity.this);
+                        mydialog.setTitle("Logout");
+                        mydialog.setMessage("Are you sure to notify?");
 
-                        int a;
-                        a = 1;
+                        mydialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                myFirebaseRef
+                                        .child(ownerUsername)
+                                        .child("notification")
+                                        .push()
+                                        .child("message")
+                                        .setValue(ConnectingServerData.username +
+                                                " wants to share books with you!");
+
+                                Toast.makeText(OwnerProfileActivity.this, "notify sucessfully", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        });
+
+                        mydialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        });
+
+                        mydialog.show();
                     }
                 });
 
@@ -448,7 +467,7 @@ public class OwnerProfileActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_owner_profle, menu);
+        getMenuInflater().inflate(R.menu.menu_message, menu);
         return true;
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.vinh.DataObjects.User;
 import com.example.vinh.GlobalObject.ConnectingServerData;
@@ -61,6 +62,8 @@ public class CreateNewAccountActivity extends AppCompatActivity {
                         .child("avatar")
                         .setValue(imageString);
 
+                Toast.makeText(CreateNewAccountActivity.this, "Account creating successfully",
+                        Toast.LENGTH_SHORT).show();
 
                 finish();
             }

@@ -104,7 +104,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Username"
@@ -125,7 +125,7 @@
                         android:layout_column="1" />
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Email"
@@ -142,7 +142,7 @@
                         android:paddingTop="8dp"/>
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Birthday"
@@ -159,7 +159,7 @@
                         android:paddingTop="8dp" />
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Phone"
@@ -176,7 +176,7 @@
                         android:paddingTop="8dp" />
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Address"

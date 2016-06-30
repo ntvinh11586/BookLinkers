@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
@@ -153,6 +154,8 @@ public class YourProfileEditingActivity extends AppCompatActivity {
                         .child("information")
                         .child("avatar")
                         .setValue(imageString);
+
+                Toast.makeText(YourProfileEditingActivity.this, "Edit profile successfully", Toast.LENGTH_SHORT).show();
 
                 finish();
             }

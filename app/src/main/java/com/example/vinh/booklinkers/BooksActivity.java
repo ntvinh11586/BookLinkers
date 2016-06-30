@@ -41,7 +41,7 @@ public class BooksActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_books);
+//        setContentView(R.layout.activity_books);
 
         ConnectingServerData.username = "vinh123";
         // set database
@@ -51,6 +51,7 @@ public class BooksActivity extends AppCompatActivity
         // actionbar tag
         ActionBar ab = getSupportActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ab.setDisplayHomeAsUpEnabled(true);
 
         // Three tab to display in actionbar
         ab.addTab(ab.newTab().setText("Having Books").setTabListener(this));

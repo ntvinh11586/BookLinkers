@@ -1,13 +1,9 @@
 package com.example.vinh.booklinkers;
 
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +21,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class BooksSearchingActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class SearchOwnerActivity extends AppCompatActivity {
 
     private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private Button btnSearch;
@@ -39,24 +34,16 @@ public class BooksSearchingActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_books_searching);
+        setContentView(R.layout.content_search_owner);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+        setTitle("Search Owner");
 
         books = new ArrayList<>();
 
-        Firebase.setAndroidContext(BooksSearchingActivity.this);
+        Firebase.setAndroidContext(SearchOwnerActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -66,9 +53,6 @@ public class BooksSearchingActivity extends AppCompatActivity
                         .child(ConnectingServerData.username)
                         .child("books")
                         .getChildren()) {
-//                    if ((boolean)postSnapshot.child("own").getValue())
-//                        books.add(postSnapshot.child("name").getValue().toString());
-//                    havingBooksAdapter.notifyDataSetChanged();
                     books.add(postSnapshot.child("name").getValue().toString());
                 }
             }
@@ -79,13 +63,8 @@ public class BooksSearchingActivity extends AppCompatActivity
             }
         });
 
-
-
-
         lvResult = (ListView) findViewById(R.id.listview_result);
         btnSearch = (Button)findViewById(R.id.button_search);
-
-
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +76,7 @@ public class BooksSearchingActivity extends AppCompatActivity
 
                 ArrayAdapter<String> resultAdapter =
                         new ArrayAdapter<String>(
-                                BooksSearchingActivity.this,
+                                SearchOwnerActivity.this,
                                 R.layout.list_search_item,
                                 searchResult);
 
@@ -109,7 +88,7 @@ public class BooksSearchingActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(
-                        BooksSearchingActivity.this,
+                        SearchOwnerActivity.this,
                         OwnerProfileActivity.class);
 
                 ownerSelection = lvResult.getItemAtPosition(position).toString();
@@ -119,15 +98,6 @@ public class BooksSearchingActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
-
-
-
     }
 
     ArrayList<String> result;
@@ -163,11 +133,7 @@ public class BooksSearchingActivity extends AppCompatActivity
                                         break;
                                     }
                             }
-
-//                            if (findData) break;
-
-                            }
-
+                        }
                 }
             }
 
@@ -182,19 +148,9 @@ public class BooksSearchingActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_message, menu);
         return true;
     }
 
@@ -210,7 +166,7 @@ public class BooksSearchingActivity extends AppCompatActivity
 
             return true;
         } else if (id == R.id.action_log_out) {
-            Intent intent = new Intent(BooksSearchingActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SearchOwnerActivity.this, LoginActivity.class);
             finish();
             startActivity(intent);
             return true;
@@ -219,28 +175,4 @@ public class BooksSearchingActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_notifcation) {
-            Intent intent = new Intent(BooksSearchingActivity.this, MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_book) {
-            Intent intent = new Intent(BooksSearchingActivity.this, BooksActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_information) {
-            Intent intent = new Intent(BooksSearchingActivity.this, YourProfileActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_search_book) {
-
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

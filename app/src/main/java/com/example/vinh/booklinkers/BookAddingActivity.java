@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.vinh.DataObjects.Book;
 import com.example.vinh.GlobalObject.ConnectingServerData;
@@ -43,6 +45,9 @@ public class BookAddingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_adding);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         Firebase.setAndroidContext(BookAddingActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
@@ -76,6 +81,8 @@ public class BookAddingActivity extends AppCompatActivity {
                         .push()
                         .setValue(book);
 
+                Toast.makeText(BookAddingActivity.this, "Add one book successfully", Toast.LENGTH_SHORT).show();
+                
                 finish();
             }
         });

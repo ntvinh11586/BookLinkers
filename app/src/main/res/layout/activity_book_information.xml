@@ -93,7 +93,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="130dp"
+                            android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Book Status"
@@ -110,7 +110,7 @@
                             android:paddingTop="8dp" />
 
                         <TextView
-                            android:layout_width="130dp"
+                            android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Book Name"
@@ -127,7 +127,7 @@
                             android:paddingTop="8dp" />
 
                         <TextView
-                            android:layout_width="130dp"
+                            android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Author"

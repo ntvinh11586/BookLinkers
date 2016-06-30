@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.example.vinh.Testers.LocalTesters;
@@ -102,8 +103,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (bUsername && bPassword) {
                             ConnectingServerData.username = username;
+
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             finish();
+
                             startActivity(intent);
                         }
                     }
