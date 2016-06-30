@@ -205,12 +205,9 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra(EXTRA_MESSENGER_USER, ConnectingServerData.username);
             startActivity(intent);
 
-        } else if (id == R.id.nav_have_book) {
-            Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_need_book) {
-            Intent intent = new Intent(MainActivity.this, BooksNeedingActivity.class);
-            //finish();
+        } else if (id == R.id.nav_book) {
+//            Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);
+            Intent intent = new Intent(MainActivity.this, BooksActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_information) {
             Intent intent = new Intent(MainActivity.this, YourProfileActivity.class);

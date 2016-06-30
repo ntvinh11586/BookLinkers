@@ -145,17 +145,6 @@ public class BooksHavingActivity extends AppCompatActivity
             }
         });
 
-        // Control
-        btnAddBook = (Button)findViewById(R.id.button_add_book);
-        btnAddBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BooksHavingActivity.this, BookAddingActivity.class);
-
-                //finish();
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -222,13 +211,9 @@ public class BooksHavingActivity extends AppCompatActivity
         if (id == R.id.nav_notifcation) {
             Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_have_book) {
+        } else if (id == R.id.nav_book) {
 
-        } else if (id == R.id.nav_need_book) {
-            Intent intent = new Intent(BooksHavingActivity.this, BooksNeedingActivity.class);
-            //finish();
-            startActivity(intent);
-        } else if (id == R.id.nav_information) {
+        }  else if (id == R.id.nav_information) {
             Intent intent = new Intent(BooksHavingActivity.this, YourProfileActivity.class);
             //finish();
             startActivity(intent);

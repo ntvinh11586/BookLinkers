@@ -11,21 +11,17 @@
             android:icon="@drawable/ic_nav_notification"
             android:title="Messenger" />
         <item
-            android:id="@+id/nav_have_book"
+            android:id="@+id/nav_book"
             android:icon="@drawable/ic_nav_having_books"
-            android:title="Your Own Books" />
-        <item
-            android:id="@+id/nav_need_book"
-            android:icon="@drawable/ic_nav_needing_books"
-            android:title="Your Needed Books" />
+            android:title="Books" />
         <item
             android:id="@+id/nav_search_book"
             android:icon="@drawable/ic_nav_search"
-            android:title="Searching Books" />
+            android:title="Search Owner" />
         <item
             android:id="@+id/nav_information"
             android:icon="@drawable/ic_nav_info"
-            android:title="Your Information" />
+            android:title="Your Profile" />
         <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_nav_settings"

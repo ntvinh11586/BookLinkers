@@ -228,11 +228,8 @@ public class BooksSearchingActivity extends AppCompatActivity
         if (id == R.id.nav_notifcation) {
             Intent intent = new Intent(BooksSearchingActivity.this, MainActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_have_book) {
+        } else if (id == R.id.nav_book) {
             Intent intent = new Intent(BooksSearchingActivity.this, BooksHavingActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_need_book) {
-            Intent intent = new Intent(BooksSearchingActivity.this, BooksNeedingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_information) {
             Intent intent = new Intent(BooksSearchingActivity.this, YourProfileActivity.class);

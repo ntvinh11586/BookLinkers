@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -143,22 +144,11 @@ public class BooksActivity extends AppCompatActivity
                     }
                 });
 
-                // Control
-                btnAddBook = (Button)findViewById(R.id.button_add_book);
-                btnAddBook.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(BooksActivity.this, BookAddingActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
                 break;
             ////////////////////////////////////////////////////////////////////////////////////////
             case 1:
                 setContentView(R.layout.content_books_needing);
 
-                btnAddBook = (Button)findViewById(R.id.button_add_book);
                 lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
 
                 books = new ArrayList<>();
@@ -261,10 +251,24 @@ public class BooksActivity extends AppCompatActivity
 
         // Called when a tab is selected again.
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_books, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add) {
+            startActivity(new Intent(BooksActivity.this, BookAddingActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

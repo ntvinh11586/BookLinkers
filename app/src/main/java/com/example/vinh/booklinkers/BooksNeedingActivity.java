@@ -57,7 +57,6 @@ public class BooksNeedingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        btnAddBook = (Button)findViewById(R.id.button_add_book);
         lvNeedingBooks = (ListView)findViewById(R.id.listview_needing_books);
 
         books = new ArrayList<>();
@@ -181,11 +180,9 @@ public class BooksNeedingActivity extends AppCompatActivity
         if (id == R.id.nav_notifcation) {
             Intent intent = new Intent(BooksNeedingActivity.this, MainActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_have_book) {
+        } else if (id == R.id.nav_book) {
             Intent intent = new Intent(BooksNeedingActivity.this, BooksHavingActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_need_book) {
-
         } else if (id == R.id.nav_information) {
             Intent intent = new Intent(BooksNeedingActivity.this, YourProfileActivity.class);
             //finish();
