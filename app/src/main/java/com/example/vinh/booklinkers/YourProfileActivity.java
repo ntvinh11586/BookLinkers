@@ -152,7 +152,7 @@ public class YourProfileActivity extends AppCompatActivity
             Intent intent = new Intent(YourProfileActivity.this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_book) {
-            Intent intent = new Intent(YourProfileActivity.this, BooksHavingActivity.class);
+            Intent intent = new Intent(YourProfileActivity.this, BooksActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_information) {
 

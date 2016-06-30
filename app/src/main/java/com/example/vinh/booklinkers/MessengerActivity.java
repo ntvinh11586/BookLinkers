@@ -37,21 +37,7 @@ public class MessengerActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        if (getIntent().getExtras().getString(EXTRA_MESSENGER_USER) !=)
-//        currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER).toString();
-
-//        if (getIntent().getStringExtra(EXTRA_MESSENGER_USER) != null) {
             currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER).toString();
-//        }
-
-//        // Check whether we're recreating a previously destroyed instance
-//        if (savedInstanceState != null) {
-//            // Restore value of members from saved state
-//            currentUser = savedInstanceState.getString(STATE_USERNAME);
-////            mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
-//        } else {
-//            // Probably initialize members with default values for a new instance
-//        }
 
         Firebase.setAndroidContext(MessengerActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-database.firebaseio.com/messenger/");

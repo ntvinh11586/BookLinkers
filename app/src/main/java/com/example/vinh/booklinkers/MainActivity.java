@@ -188,6 +188,11 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_messenger) {
+            Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
+            intent.putExtra(EXTRA_MESSENGER_USER, ConnectingServerData.username);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -200,13 +205,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_notifcation) {
 
-        } else if (id == R.id.nav_messenger) {
-            Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
-            intent.putExtra(EXTRA_MESSENGER_USER, ConnectingServerData.username);
-            startActivity(intent);
-
         } else if (id == R.id.nav_book) {
-//            Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);
             Intent intent = new Intent(MainActivity.this, BooksActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_information) {

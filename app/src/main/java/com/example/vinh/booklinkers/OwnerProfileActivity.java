@@ -74,6 +74,8 @@ public class OwnerProfileActivity
         ownerUsername = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
         yourUsername = ConnectingServerData.username;
 
+        setTitle(ownerUsername + "'s Profile");
+
         listMyBooks = new ArrayList<String>();
 
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -150,6 +152,7 @@ public class OwnerProfileActivity
 
         ActionBar ab = getSupportActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ab.setDisplayHomeAsUpEnabled(true);
 
         // Three tab to display in actionbar
         ab.addTab(ab.newTab().setText("Information").setTabListener(this));
@@ -431,7 +434,7 @@ public class OwnerProfileActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_owner_profle, menu);
         return true;
     }
 }

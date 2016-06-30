@@ -69,7 +69,9 @@ public class BooksActivity extends AppCompatActivity
                 lvHavingBooks = (ListView)findViewById(R.id.listview_having_books);
 
                 havingBooks = new ArrayList<>();
-                havingBooksAdapter = new ArrayAdapter<String>(this, R.layout.list_having_book_item, havingBooks);
+                havingBooksAdapter = new ArrayAdapter<String>(this,
+                        R.layout.list_having_book_item, havingBooks);
+
                 lvHavingBooks.setAdapter(havingBooksAdapter);
 
                 myFirebaseRef
@@ -221,8 +223,7 @@ public class BooksActivity extends AppCompatActivity
                                         intent.putExtra(EXTRA_USERNAME, ConnectingServerData.username);
 
                                         intent.putExtra(EXTRA_BOOK_NAME,
-                                                postSnapshot
-                                                        .getKey().toString());
+                                                postSnapshot.getKey().toString());
                                         startActivity(intent);
                                     }
                                 }
