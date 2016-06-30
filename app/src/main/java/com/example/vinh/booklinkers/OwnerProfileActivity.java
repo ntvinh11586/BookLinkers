@@ -93,7 +93,6 @@ public class OwnerProfileActivity
             }
         });
 
-
         listOwnerHavingBooks = new ArrayList<String>();
 
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -145,8 +144,6 @@ public class OwnerProfileActivity
 
             }
         });
-
-
 
 
 //        setContentView(R.layout.activity_owner_personal_profile);
@@ -239,19 +236,6 @@ public class OwnerProfileActivity
                         myFirebaseRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-
-//                                String email = dataSnapshot.child(ownerUsername)
-//                                        .child("information")
-//                                        .child("email").getValue().toString();
-//
-//                                Intent intent = new Intent(Intent.ACTION_SEND);
-//                                intent.setType("message/rfc822");
-//                                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-//                                try {
-//                                    startActivity(Intent.createChooser(intent, "Send mail..."));
-//                                } catch (android.content.ActivityNotFoundException ex) {
-//
-//                                }
 
                                 Intent intent = new Intent(OwnerProfileActivity.this, MessageActivity.class);
                                 intent.putExtra(EXTRA_CURRENT_USER, ConnectingServerData.username);

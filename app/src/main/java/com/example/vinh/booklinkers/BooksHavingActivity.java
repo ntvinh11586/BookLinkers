@@ -29,9 +29,13 @@ import java.util.ArrayList;
 public class BooksHavingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    // EXTRA for book information
     private final String EXTRA_USERNAME = "EXTRA_USERNAME";
     private final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
     private final String EXTRA_REMOVE_BOOK = "EXTRA_REMOVE_BOOK";
+
+    // EXTRA for remove books
     private final int EXTRA_REQUEST_CODE = 999;
 
     ListView lvHavingBooks;
@@ -214,14 +218,6 @@ public class BooksHavingActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-//        if (id == R.id.nav_notifcation) {
-//            Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);
-////            finish();
-//            startActivity(intent);
-//        } else if (id == R.id.nav_have_book) {
-//
-//        }
 
         if (id == R.id.nav_notifcation) {
             Intent intent = new Intent(BooksHavingActivity.this, MainActivity.class);

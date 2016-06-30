@@ -16,10 +16,11 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_activty);
 
         btnMessage = (Button)findViewById(R.id.button);
+
         btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TestActivity.this, MessengerActivity.class));
+                startActivity(new Intent(TestActivity.this, BooksActivity.class));
             }
         });
     }
