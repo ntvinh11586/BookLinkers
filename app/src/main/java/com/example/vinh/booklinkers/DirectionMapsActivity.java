@@ -26,7 +26,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OwnerDirectionMapsActivity extends FragmentActivity
+public class DirectionMapsActivity extends FragmentActivity
         implements OnMapReadyCallback, DirectionFinderListener {
 
     private static final String EXTRA_YOUR_LOCATION = "EXTRA_YOUR_LOCATION";

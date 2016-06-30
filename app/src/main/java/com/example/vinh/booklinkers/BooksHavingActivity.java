@@ -17,11 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
-import com.example.vinh.Testers.LocalTesters;
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -236,7 +233,7 @@ public class BooksHavingActivity extends AppCompatActivity
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_information) {
-            Intent intent = new Intent(BooksHavingActivity.this, YourInformationActivity.class);
+            Intent intent = new Intent(BooksHavingActivity.this, YourProfileActivity.class);
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_search_book) {

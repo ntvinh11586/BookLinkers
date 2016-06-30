@@ -110,7 +110,7 @@ public class BooksSearchingActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(
                         BooksSearchingActivity.this,
-                        OwnerInformationActivity.class);
+                        OwnerProfileActivity.class);
 
                 ownerSelection = lvResult.getItemAtPosition(position).toString();
 
@@ -235,7 +235,7 @@ public class BooksSearchingActivity extends AppCompatActivity
             Intent intent = new Intent(BooksSearchingActivity.this, BooksNeedingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_information) {
-            Intent intent = new Intent(BooksSearchingActivity.this, YourInformationActivity.class);
+            Intent intent = new Intent(BooksSearchingActivity.this, YourProfileActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_search_book) {
 

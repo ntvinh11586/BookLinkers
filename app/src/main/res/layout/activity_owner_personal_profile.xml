@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context=".OwnerProfileActivity"
+    android:paddingLeft="@dimen/fab_margin"
+    android:paddingRight="@dimen/fab_margin"
+    android:paddingEnd="@dimen/fab_margin"
     android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.vinh.booklinkers.YourInformationActivity"
-    tools:showIn="@layout/app_bar_your_information"
     android:background="@color/colorBackground">
 
     <ScrollView
@@ -33,9 +30,9 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:id="@+id/image_avatar"
-                    android:src="@drawable/img_your_avatar"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/img_owner_avatar"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
                     android:layout_gravity="center_horizontal" />
@@ -48,7 +45,7 @@
                     android:id="@+id/text_name"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
-                    android:gravity="center"/>
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,12 +60,31 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Change your information"
-                        android:id="@+id/button_change_information" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Notify"
+                        android:id="@+id/button_notify"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Call"
+                        android:id="@+id/button_call" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Send Message"
+                        android:id="@+id/button_send_message" />
 
                 </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View Direction (google map)"
+                    android:id="@+id/button_view_direction" />
 
             </LinearLayout>
 
@@ -76,7 +92,9 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" >
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp" >
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -180,4 +198,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

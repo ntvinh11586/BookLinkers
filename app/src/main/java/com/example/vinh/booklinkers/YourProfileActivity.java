@@ -3,7 +3,6 @@ package com.example.vinh.booklinkers;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
@@ -26,9 +24,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-public class YourInformationActivity extends AppCompatActivity
+public class YourProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button btnChangeInformation;
@@ -46,7 +42,7 @@ public class YourInformationActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_your_personal_information);
+        setContentView(R.layout.activity_your_personal_profile);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -71,7 +67,7 @@ public class YourInformationActivity extends AppCompatActivity
         ivAvatar = (ImageView)findViewById(R.id.image_avatar);
 
 
-        Firebase.setAndroidContext(YourInformationActivity.this);
+        Firebase.setAndroidContext(YourProfileActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         // set information profile
@@ -110,7 +106,7 @@ public class YourInformationActivity extends AppCompatActivity
         btnChangeInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(YourInformationActivity.this, YourInformationEditingActivity.class);
+                Intent intent = new Intent(YourProfileActivity.this, YourProfileEditingActivity.class);
                 startActivity(intent);
             }
         });
@@ -153,18 +149,18 @@ public class YourInformationActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.nav_notifcation) {
-            Intent intent = new Intent(YourInformationActivity.this, MainActivity.class);
+            Intent intent = new Intent(YourProfileActivity.this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_have_book) {
-            Intent intent = new Intent(YourInformationActivity.this, BooksHavingActivity.class);
+            Intent intent = new Intent(YourProfileActivity.this, BooksHavingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_need_book) {
-            Intent intent = new Intent(YourInformationActivity.this, BooksNeedingActivity.class);
+            Intent intent = new Intent(YourProfileActivity.this, BooksNeedingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_information) {
 
         } else if (id == R.id.nav_search_book) {
-            Intent intent = new Intent(YourInformationActivity.this, BooksSearchingActivity.class);
+            Intent intent = new Intent(YourProfileActivity.this, BooksSearchingActivity.class);
             startActivity(intent);
         }
 

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
@@ -25,7 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
-public class YourInformationEditingActivity extends AppCompatActivity {
+public class YourProfileEditingActivity extends AppCompatActivity {
 
     private Button btnApply;
     private EditText etName;
@@ -41,9 +40,9 @@ public class YourInformationEditingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_your_information_editing);
+        setContentView(R.layout.activity_your_profile_editing);
 
-        Firebase.setAndroidContext(YourInformationEditingActivity.this);
+        Firebase.setAndroidContext(YourProfileEditingActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         etName = (EditText)findViewById(R.id.edit_name);

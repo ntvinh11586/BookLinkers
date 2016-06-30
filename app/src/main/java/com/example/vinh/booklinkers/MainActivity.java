@@ -16,18 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
-import com.example.vinh.Testers.LocalTesters;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -105,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(
                         MainActivity.this,
-                        OwnerInformationActivity.class);
+                        OwnerProfileActivity.class);
                 
                 ownerSelection = lvHavingBooks.getItemAtPosition(position).toString();
 
@@ -174,7 +169,7 @@ public class MainActivity extends AppCompatActivity
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_information) {
-            Intent intent = new Intent(MainActivity.this, YourInformationActivity.class);
+            Intent intent = new Intent(MainActivity.this, YourProfileActivity.class);
             //finish();
             startActivity(intent);
         } else if (id == R.id.nav_search_book) {

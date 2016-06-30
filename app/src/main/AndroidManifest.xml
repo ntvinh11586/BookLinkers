@@ -61,11 +61,11 @@
             android:name=".BookAddingActivity"
             android:label="@string/title_activity_book_adding" />
         <activity
-            android:name=".YourInformationActivity"
+            android:name=".YourProfileActivity"
             android:label="@string/title_activity_your_information"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OwnerInformationActivity"
+            android:name=".OwnerProfileActivity"
             android:label="@string/title_activity_owner_information" />
         <activity
             android:name=".BooksSearchingActivity"
@@ -84,10 +84,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".OwnerDirectionMapsActivity"
+            android:name=".DirectionMapsActivity"
             android:label="@string/title_activity_owner_direction_maps" />
         <activity
-            android:name=".YourInformationEditingActivity"
+            android:name=".YourProfileEditingActivity"
             android:label="@string/title_activity_your_information_editing" />
         <activity android:name=".TestActivity">
             <!--<intent-filter>-->
@@ -105,8 +105,11 @@
         </activity>
         <activity
             android:name=".MessengerActivity"
-            android:label="Messenger">
-
+            android:label="Messenger"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.vinh.booklinkers.MainActivity" />
         </activity>
     </application>
 

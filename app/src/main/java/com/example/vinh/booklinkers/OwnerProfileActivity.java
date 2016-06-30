@@ -22,7 +22,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class OwnerInformationActivity
+public class OwnerProfileActivity
         extends AppCompatActivity
         implements ActionBar.TabListener{
 
@@ -64,7 +64,7 @@ public class OwnerInformationActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Firebase.setAndroidContext(OwnerInformationActivity.this);
+        Firebase.setAndroidContext(OwnerProfileActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
         ownerUsername = getIntent().getExtras().getString(EXTRA_OWNER_USERNAME);
@@ -145,7 +145,7 @@ public class OwnerInformationActivity
 
 
 
-//        setContentView(R.layout.activity_owner_personal_information);
+//        setContentView(R.layout.activity_owner_personal_profile);
 
         ActionBar ab = getSupportActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -166,7 +166,7 @@ public class OwnerInformationActivity
 
             // owner personal information: information tab
             case 0:
-                setContentView(R.layout.activity_owner_personal_information);
+                setContentView(R.layout.activity_owner_personal_profile);
 
                 btnCall = (Button)findViewById(R.id.button_call);
                 btnSendMessage = (Button)findViewById(R.id.button_send_message);
@@ -178,7 +178,7 @@ public class OwnerInformationActivity
                 tvBirthday = (TextView)findViewById(R.id.text_birthday);
                 tvPhone = (TextView)findViewById(R.id.text_phone);
                 tvAddress = (TextView)findViewById(R.id.text_address);
-                Firebase.setAndroidContext(OwnerInformationActivity.this);
+                Firebase.setAndroidContext(OwnerProfileActivity.this);
                 myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
 
                 // load owner information
@@ -278,8 +278,8 @@ public class OwnerInformationActivity
                                         .child("address")
                                         .getValue().toString();
 
-                                Intent intent = new Intent(OwnerInformationActivity.this,
-                                        OwnerDirectionMapsActivity.class);
+                                Intent intent = new Intent(OwnerProfileActivity.this,
+                                        DirectionMapsActivity.class);
 
                                 intent.putExtra(EXTRA_YOUR_LOCATION, yourLocation);
                                 intent.putExtra(EXTRA_OWNER_LOCATION, ownerLocation);
@@ -346,7 +346,7 @@ public class OwnerInformationActivity
                                             .getValue()
                                             .toString()
                                             .equals(strLvItem)) {
-                                        Intent intent = new Intent(OwnerInformationActivity.this,
+                                        Intent intent = new Intent(OwnerProfileActivity.this,
                                                 BookInformationActivity.class);
 
                                         intent.putExtra(EXTRA_USERNAME, ownerUsername);
@@ -402,7 +402,7 @@ public class OwnerInformationActivity
                                             .getValue()
                                             .toString()
                                             .equals(strLvItem)) {
-                                        Intent intent = new Intent(OwnerInformationActivity.this,
+                                        Intent intent = new Intent(OwnerProfileActivity.this,
                                                 BookInformationActivity.class);
 
                                         intent.putExtra(EXTRA_USERNAME, ownerUsername);

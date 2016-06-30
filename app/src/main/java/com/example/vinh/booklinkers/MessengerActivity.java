@@ -34,6 +34,8 @@ public class MessengerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER);
 
         Firebase.setAndroidContext(MessengerActivity.this);
