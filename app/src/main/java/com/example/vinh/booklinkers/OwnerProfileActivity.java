@@ -31,6 +31,10 @@ public class OwnerProfileActivity
     private static final String EXTRA_OWNER_LOCATION = "EXTRA_OWNER_LOCATION";
     private static final String EXTRA_BOOK_NAME = "EXTRA_BOOK_NAME";
     private static final String EXTRA_USERNAME = "EXTRA_USERNAME";
+
+    private static final String EXTRA_CURRENT_USER = "EXTRA_CURRENT_USER";
+    private static final String EXTRA_OWNER_USER = "EXTRA_OWNER_USER";
+
     private static final int EXTRA_REQUEST_CODE = 999;
 
     private Button btnCall;
@@ -236,18 +240,25 @@ public class OwnerProfileActivity
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                String email = dataSnapshot.child(ownerUsername)
-                                        .child("information")
-                                        .child("email").getValue().toString();
+//                                String email = dataSnapshot.child(ownerUsername)
+//                                        .child("information")
+//                                        .child("email").getValue().toString();
+//
+//                                Intent intent = new Intent(Intent.ACTION_SEND);
+//                                intent.setType("message/rfc822");
+//                                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+//                                try {
+//                                    startActivity(Intent.createChooser(intent, "Send mail..."));
+//                                } catch (android.content.ActivityNotFoundException ex) {
+//
+//                                }
 
-                                Intent intent = new Intent(Intent.ACTION_SEND);
-                                intent.setType("message/rfc822");
-                                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                                try {
-                                    startActivity(Intent.createChooser(intent, "Send mail..."));
-                                } catch (android.content.ActivityNotFoundException ex) {
+                                Intent intent = new Intent(OwnerProfileActivity.this, MessageActivity.class);
+                                intent.putExtra(EXTRA_CURRENT_USER, ConnectingServerData.username);
+                                intent.putExtra(EXTRA_OWNER_USER, ownerUsername);
 
-                                }
+                                startActivity(intent);
+
                             }
 
                             @Override

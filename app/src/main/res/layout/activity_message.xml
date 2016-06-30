@@ -5,17 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".MessageActivity"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="310dp"
-        android:layout_weight="1.00">
+        android:layout_weight="1.00"
+        android:paddingLeft="@dimen/fab_margin"
+        android:paddingRight="@dimen/fab_margin"
+        android:paddingTop="@dimen/fab_margin" >
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/listview_message"
             android:scrollbars="none"
             android:stackFromBottom="true" />
@@ -44,7 +47,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/button_send_message"
                 android:src="@drawable/ic_menu_send"
-                android:background="@android:color/white"
+                android:background="@color/colorBackground"
                 android:drawSelectorOnTop="true" />
 
         </LinearLayout>

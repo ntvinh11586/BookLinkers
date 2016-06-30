@@ -29,7 +29,7 @@
              </intent-filter>
         </activity>
         <activity
-            android:name=".AccountCreatingActivity"
+            android:name=".CreateNewAccountActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"

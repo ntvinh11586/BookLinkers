@@ -21,6 +21,7 @@ public class MessengerActivity extends AppCompatActivity {
     private static final String EXTRA_CURRENT_USER = "EXTRA_CURRENT_USER";
     private static final String EXTRA_OWNER_USER = "EXTRA_OWNER_USER";
     private static final String EXTRA_MESSENGER_USER = "EXTRA_MESSENGER_USER";
+    private static final String STATE_USERNAME = "STATE_USERNAME";
 
     private Firebase myFirebaseRef;
     private ListView lvMessenger;
@@ -36,7 +37,21 @@ public class MessengerActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER);
+//        if (getIntent().getExtras().getString(EXTRA_MESSENGER_USER) !=)
+//        currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER).toString();
+
+//        if (getIntent().getStringExtra(EXTRA_MESSENGER_USER) != null) {
+            currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER).toString();
+//        }
+
+//        // Check whether we're recreating a previously destroyed instance
+//        if (savedInstanceState != null) {
+//            // Restore value of members from saved state
+//            currentUser = savedInstanceState.getString(STATE_USERNAME);
+////            mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+//        } else {
+//            // Probably initialize members with default values for a new instance
+//        }
 
         Firebase.setAndroidContext(MessengerActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-database.firebaseio.com/messenger/");
@@ -95,4 +110,14 @@ public class MessengerActivity extends AppCompatActivity {
             }
         });
     }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle savedInstanceState) {
+//        // Save the user's current game state
+//        savedInstanceState.putString(STATE_USERNAME, currentUser);
+////        savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
+//
+//        // Always call the superclass so it can save the view hierarchy state
+//        super.onSaveInstanceState(savedInstanceState);
+//    }
 }

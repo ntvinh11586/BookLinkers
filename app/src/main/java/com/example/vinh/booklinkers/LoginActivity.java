@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.example.vinh.Testers.LocalTesters;
@@ -130,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,
-                        AccountCreatingActivity.class);
+                        CreateNewAccountActivity.class);
                 startActivity(intent);
             }
         });

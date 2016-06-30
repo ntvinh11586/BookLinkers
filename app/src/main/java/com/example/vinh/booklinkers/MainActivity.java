@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity
 
     private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
     private static final String EXTRA_MESSENGER_USER = "EXTRA_MESSENGER_USER";
+
+    private static final String EXTRA_CURRENT_USER = "EXTRA_CURRENT_USER";
+    private static final String EXTRA_OWNER_USER = "EXTRA_OWNER_USER";
+
     private Firebase myFirebaseRef;
     private ListView lvHavingBooks;
     private ArrayList<String> books;
