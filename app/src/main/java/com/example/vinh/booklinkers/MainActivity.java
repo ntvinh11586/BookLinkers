@@ -2,6 +2,8 @@ package com.example.vinh.booklinkers;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,13 +12,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.firebase.client.DataSnapshot;
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     private ArrayAdapter<String> havingBooksAdapter;
     private String strLvItem;
     private String ownerSelection;
+    private ImageView imgNavAvatar;
+    private TextView tvNavName;
+    private TextView tvNavEmail;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
@@ -52,9 +60,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // set toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // navigation bar drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -65,9 +76,38 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
 
-
+        // firebase
         Firebase.setAndroidContext(MainActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
+        // set nativation bar value
+
+        imgNavAvatar = (ImageView)header.findViewById(R.id.image_nav_avatar);
+        tvNavName = (TextView)header.findViewById(R.id.text_nav_name);
+        tvNavEmail = (TextView)header.findViewById(R.id.text_nav_email);
+
+        myFirebaseRef
+                .child(ConnectingServerData.username)
+                .child("information")
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                byte[] imageArray = Base64.decode(dataSnapshot
+                                .child("avatar").getValue().toString(),
+                        Base64.DEFAULT);
+
+                Bitmap bmp = BitmapFactory.decodeByteArray(imageArray, 0, imageArray.length);
+                imgNavAvatar.setImageBitmap(bmp);
+
+                tvNavName.setText(dataSnapshot.child("name").getValue().toString());
+                tvNavEmail.setText(dataSnapshot.child("email").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         // ListView
         lvHavingBooks = (ListView)findViewById(R.id.listview_notification);

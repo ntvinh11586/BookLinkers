@@ -11,12 +11,12 @@
     <string name="title_activity_book_adding">Add your Book</string>
     <string name="title_activity_books_having">Your Own Books</string>
     <string name="title_activity_books_needing">Your Needed Books</string>
-    <string name="title_activity_your_information">Your Personal Information</string>
-    <string name="title_activity_owner_information">Owner Personal Information</string>
+    <string name="title_activity_your_information">Your Personal Profile</string>
+    <string name="title_activity_owner_information">Owner Personal Profile</string>
     <string name="title_activity_book_exchange_detail">Book Exchange Detail</string>
     <string name="title_book_editing">Edit Book</string>
     <string name="title_book_information">Book Information</string>
-    <string name="title_activity_your_information_editing">Information Editing</string>
+    <string name="title_activity_your_information_editing">Profile Editing</string>
 
     <string name="null_string">{None}</string>
 

@@ -368,12 +368,7 @@ public class OwnerProfileActivity
                     }
                 });
 
-
-
-
-
                 break;
-
 
             // needed books
             case 2:
