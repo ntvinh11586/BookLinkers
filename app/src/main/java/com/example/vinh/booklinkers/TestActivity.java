@@ -1,7 +1,6 @@
 package com.example.vinh.booklinkers;
 
 import android.content.Intent;
-import android.os.Messenger;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;

@@ -97,11 +97,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MessengerActivity"
-            android:parentActivityName="com.example.vinh.booklinkers.TestActivity" >
+            android:name=".MessageActivity"
+            android:parentActivityName=".MessengerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.vinh.booklinkers.TestActivity" />
+                android:value="com.example.vinh.booklinkers.MessengerActivity" />
+        </activity>
+        <activity
+            android:name=".MessengerActivity"
+            android:label="Messenger">
+
         </activity>
     </application>
 
