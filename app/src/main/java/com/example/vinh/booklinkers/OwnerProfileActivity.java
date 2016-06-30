@@ -1,16 +1,20 @@
 package com.example.vinh.booklinkers;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -63,6 +67,7 @@ public class OwnerProfileActivity
     private String strLvItem;
     private Button btnNotify;
     private String yourUsername;
+    private ImageView ivAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +177,9 @@ public class OwnerProfileActivity
             case 0:
                 setContentView(R.layout.activity_owner_personal_profile);
 
+                Firebase.setAndroidContext(OwnerProfileActivity.this);
+                myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
                 btnCall = (Button)findViewById(R.id.button_call);
                 btnSendMessage = (Button)findViewById(R.id.button_send_message);
                 btnDirection = (Button)findViewById(R.id.button_view_direction);
@@ -182,8 +190,7 @@ public class OwnerProfileActivity
                 tvBirthday = (TextView)findViewById(R.id.text_birthday);
                 tvPhone = (TextView)findViewById(R.id.text_phone);
                 tvAddress = (TextView)findViewById(R.id.text_address);
-                Firebase.setAndroidContext(OwnerProfileActivity.this);
-                myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+                ivAvatar = (ImageView)findViewById(R.id.image_owner_avatar);
 
                 // load owner information
                 myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -200,6 +207,13 @@ public class OwnerProfileActivity
                         tvBirthday.setText(snapshot.child("birthday").getValue().toString());
                         tvPhone.setText(snapshot.child("phone").getValue().toString());
                         tvAddress.setText(snapshot.child("address").getValue().toString());
+
+                        byte[] imageArray = Base64.decode(snapshot
+                                        .child("avatar").getValue().toString(),
+                                Base64.DEFAULT);
+
+                        Bitmap bmp = BitmapFactory.decodeByteArray(imageArray, 0, imageArray.length);
+                        ivAvatar.setImageBitmap(bmp);
                     }
 
                     @Override
