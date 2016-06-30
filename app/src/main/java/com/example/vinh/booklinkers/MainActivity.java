@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String EXTRA_OWNER_USERNAME = "EXTRA_OWNER_USERNAME";
+    private static final String EXTRA_MESSENGER_USER = "EXTRA_MESSENGER_USER";
     private Firebase myFirebaseRef;
     private ListView lvHavingBooks;
     private ArrayList<String> books;
@@ -159,6 +160,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_notifcation) {
+
+        } else if (id == R.id.nav_messenger) {
+            Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
+            intent.putExtra(EXTRA_MESSENGER_USER, ConnectingServerData.username);
+            startActivity(intent);
 
         } else if (id == R.id.nav_have_book) {
             Intent intent = new Intent(MainActivity.this, BooksHavingActivity.class);

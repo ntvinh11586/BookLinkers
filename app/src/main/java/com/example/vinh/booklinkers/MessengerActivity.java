@@ -20,6 +20,7 @@ public class MessengerActivity extends AppCompatActivity {
 
     private static final String EXTRA_CURRENT_USER = "EXTRA_CURRENT_USER";
     private static final String EXTRA_OWNER_USER = "EXTRA_OWNER_USER";
+    private static final String EXTRA_MESSENGER_USER = "EXTRA_MESSENGER_USER";
 
     private Firebase myFirebaseRef;
     private ListView lvMessenger;
@@ -28,13 +29,12 @@ public class MessengerActivity extends AppCompatActivity {
     private String currentUser;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
 
-        currentUser = "vinh123";
+        currentUser = getIntent().getExtras().getString(EXTRA_MESSENGER_USER);
 
         Firebase.setAndroidContext(MessengerActivity.this);
         myFirebaseRef = new Firebase("https://booklinkers-database.firebaseio.com/messenger/");

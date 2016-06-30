@@ -7,6 +7,10 @@
             android:icon="@drawable/ic_nav_notification"
             android:title="Notification" />
         <item
+            android:id="@+id/nav_messenger"
+            android:icon="@drawable/ic_nav_notification"
+            android:title="Messenger" />
+        <item
             android:id="@+id/nav_have_book"
             android:icon="@drawable/ic_nav_having_books"
             android:title="Your Own Books" />
