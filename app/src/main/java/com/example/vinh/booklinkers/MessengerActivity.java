@@ -83,6 +83,8 @@ public class MessengerActivity extends AppCompatActivity {
                 messsageItems.add(name + ": " + value);
 
                 itemsAdapter.notifyDataSetChanged();
+
+                scrollMyListViewToBottom();
             }
 
             @Override
@@ -106,38 +108,34 @@ public class MessengerActivity extends AppCompatActivity {
             }
         });
 
-//        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot postSnapshot : dataSnapshot.child(keyMessage).getChildren()) {
-//                    String value = postSnapshot.child("message").getValue().toString();
-//                    String name = postSnapshot.child("owner").getValue().toString();
-//
-//                    messsageItems.add(name + ": " + value);
-//                }
-//                itemsAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
-
         // send message
         btnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String messageContent = etMessageContent.getText().toString();
-                etMessageContent.setText("");
 
-                com.example.vinh.DataObjects.Message message =
-                        new com.example.vinh.DataObjects.Message(messageContent, currentUser);
+                if (!messageContent.equals("")) {
+                    etMessageContent.setText("");
+                    com.example.vinh.DataObjects.Message message =
+                            new com.example.vinh.DataObjects.Message(messageContent, currentUser);
 
-                myFirebaseRef.child(keyMessage).push().setValue(message);
+                    myFirebaseRef.child(keyMessage).push().setValue(message);
+                }
             }
         });
     }
+
+
+    private void scrollMyListViewToBottom() {
+        lvMessage.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                lvMessage.setSelection(lvMessage.getCount() - 1);
+            }
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
