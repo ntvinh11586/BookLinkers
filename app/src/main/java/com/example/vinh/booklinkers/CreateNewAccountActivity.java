@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.vinh.DataObjects.User;
 import com.example.vinh.GlobalObject.ConnectingServerData;
-import com.example.vinh.Testers.LocalTesters;
 import com.firebase.client.Firebase;
 
 import java.io.ByteArrayOutputStream;
@@ -68,8 +67,6 @@ public class CreateNewAccountActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 
     public byte[] setImageViewtoByteArray(ImageView imgv){
@@ -81,32 +78,5 @@ public class CreateNewAccountActivity extends AppCompatActivity {
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
-    }
-
-    private boolean canCreateAccount(String username, String password, String email, String passwordAgain) {
-        if (isAvailableAccount(username)
-                && isAvailableEmail(email)
-                && passwordMatch(password, passwordAgain))
-            return true;
-
-        return false;
-    }
-
-    private boolean isAvailableEmail(String email) {
-        if (!email.equals(LocalTesters.email))
-            return true;
-        return false;
-    }
-
-    private boolean passwordMatch(String password, String passwordAgain) {
-        if (password.equals(passwordAgain))
-            return true;
-        return false;
-    }
-
-    private boolean isAvailableAccount(String username) {
-        if (!username.equals(LocalTesters.username))
-            return true;
-        return false;
     }
 }

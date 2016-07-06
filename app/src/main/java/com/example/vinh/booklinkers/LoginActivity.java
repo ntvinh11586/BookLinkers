@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
-import com.example.vinh.Testers.LocalTesters;
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -44,7 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        LocalTesters.callProcessingTest();
+        // connect database
+        Firebase.setAndroidContext(LoginActivity.this);
+        myFirebaseRef = new Firebase("https://booklinkers-database.firebaseio.com/");
 
         etUsername = (EditText)findViewById(R.id.edit_username);
         etPassword = (EditText)findViewById(R.id.edit_password);
@@ -64,9 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             cbRememberPassword.setChecked(true);
         }
 
-        Firebase.setAndroidContext(LoginActivity.this);
 
-        myFirebaseRef = new Firebase("https://booklinkers-database.firebaseio.com/");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
