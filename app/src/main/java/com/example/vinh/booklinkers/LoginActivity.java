@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.vinh.GlobalObject.ConnectingServerData;
 import com.example.vinh.Testers.LocalTesters;
+import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -64,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Firebase.setAndroidContext(LoginActivity.this);
-        myFirebaseRef = new Firebase("https://booklinkers-db.firebaseio.com/");
+
+        myFirebaseRef = new Firebase("https://booklinkers-database.firebaseio.com/");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,49 +84,22 @@ public class LoginActivity extends AppCompatActivity {
                     loginPrefsEditor.commit();
                 }
 
-
-                myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                myFirebaseRef.authWithPassword(username, password,
+                        new Firebase.AuthResultHandler() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                            if (username.equals(postSnapshot.getKey().toString()))
-                                bUsername = true;
-                        }
+                    public void onAuthenticated(AuthData authData) {
+                        ConnectingServerData.username = "vinh123";
 
-                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                            tmpPassword = postSnapshot
-                                    .child("information")
-                                    .child("password")
-                                    .getValue()
-                                    .toString();
-                            if (tmpPassword.equals(password))
-                                bPassword = true;
-                        }
-
-                        if (bUsername && bPassword) {
-                            ConnectingServerData.username = username;
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            finish();
-
-                            startActivity(intent);
-                        }
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        finish();
+                        startActivity(intent);
                     }
 
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
+                            @Override
+                    public void onAuthenticationError(FirebaseError firebaseError) {
+                                Toast.makeText(LoginActivity.this, "Error Login", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-//                if (isLoginCorrect(username, password)) {
-//                    //Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    finish();
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
-//                }
             }
         });
 
@@ -136,13 +111,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private boolean isLoginCorrect(String username, String password) {
-        if (username.equals(LocalTesters.username)
-                && password.equals(LocalTesters.password))
-            return true;
-
-        return false;
     }
 }
